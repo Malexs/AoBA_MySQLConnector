@@ -1,0 +1,11 @@
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\bin\Debug\DB_connector.exe.config
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\bin\Debug\DB_connector.exe
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\bin\Debug\DB_connector.pdb
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\bin\Debug\MySql.Data.dll
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.csprojResolveAssemblyReference.cache
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.Properties.Resources.resources
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.csproj.GenerateResource.Cache
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\DB_connector.exe
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\DB_connector.pdb
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.AddForm.resources
+C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.MainForm.resources
