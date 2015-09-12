@@ -9,3 +9,14 @@ C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\DB_connector.
 C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\DB_connector.pdb
 C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.AddForm.resources
 C:\Malexs\projects\7 sem\ADB\1\DB_connector\DB_connector\obj\Debug\Bank_Assistant.MainForm.resources
+C:\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.exe.config
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\DB_connector.exe
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\DB_connector.pdb
+C:\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.exe
+C:\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.pdb
+C:\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\MySql.Data.dll
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csprojResolveAssemblyReference.cache
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.AddForm.resources
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.MainForm.resources
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.Properties.Resources.resources
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csproj.GenerateResource.Cache

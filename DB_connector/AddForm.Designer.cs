@@ -81,14 +81,14 @@
             this.socialGBox = new System.Windows.Forms.GroupBox();
             this.isArmyCBox = new System.Windows.Forms.CheckBox();
             this.isOldmanCBox = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.armyLabel = new System.Windows.Forms.Label();
+            this.oldieLabel = new System.Windows.Forms.Label();
+            this.invalidTBox = new System.Windows.Forms.TextBox();
+            this.citizenTBox = new System.Windows.Forms.TextBox();
+            this.familyTBox = new System.Windows.Forms.TextBox();
+            this.invalidLabel = new System.Windows.Forms.Label();
+            this.citLabel = new System.Windows.Forms.Label();
+            this.familyLabel = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.infoGBox.SuspendLayout();
@@ -196,7 +196,7 @@
             this.isFemaleRBtn.Location = new System.Drawing.Point(100, 75);
             this.isFemaleRBtn.Name = "isFemaleRBtn";
             this.isFemaleRBtn.Size = new System.Drawing.Size(59, 17);
-            this.isFemaleRBtn.TabIndex = 7;
+            this.isFemaleRBtn.TabIndex = 2;
             this.isFemaleRBtn.Text = "Female";
             this.isFemaleRBtn.UseVisualStyleBackColor = true;
             // 
@@ -207,22 +207,22 @@
             this.isMaleRBtn.Location = new System.Drawing.Point(100, 55);
             this.isMaleRBtn.Name = "isMaleRBtn";
             this.isMaleRBtn.Size = new System.Drawing.Size(48, 17);
-            this.isMaleRBtn.TabIndex = 6;
+            this.isMaleRBtn.TabIndex = 1;
             this.isMaleRBtn.TabStop = true;
             this.isMaleRBtn.Text = "Male";
             this.isMaleRBtn.UseVisualStyleBackColor = true;
             // 
             // bplaceBox
             // 
-            this.bplaceBox.Location = new System.Drawing.Point(100, 98);
+            this.bplaceBox.Location = new System.Drawing.Point(100, 29);
             this.bplaceBox.Name = "bplaceBox";
             this.bplaceBox.Size = new System.Drawing.Size(205, 20);
-            this.bplaceBox.TabIndex = 5;
+            this.bplaceBox.TabIndex = 0;
             // 
             // bdayBox
             // 
             this.bdayBox.ForeColor = System.Drawing.Color.Gray;
-            this.bdayBox.Location = new System.Drawing.Point(100, 29);
+            this.bdayBox.Location = new System.Drawing.Point(100, 102);
             this.bdayBox.Name = "bdayBox";
             this.bdayBox.Size = new System.Drawing.Size(205, 20);
             this.bdayBox.TabIndex = 3;
@@ -233,7 +233,7 @@
             // bplaceLabel
             // 
             this.bplaceLabel.AutoSize = true;
-            this.bplaceLabel.Location = new System.Drawing.Point(6, 105);
+            this.bplaceLabel.Location = new System.Drawing.Point(6, 32);
             this.bplaceLabel.Name = "bplaceLabel";
             this.bplaceLabel.Size = new System.Drawing.Size(54, 13);
             this.bplaceLabel.TabIndex = 2;
@@ -251,7 +251,7 @@
             // bdayLabel
             // 
             this.bdayLabel.AutoSize = true;
-            this.bdayLabel.Location = new System.Drawing.Point(6, 32);
+            this.bdayLabel.Location = new System.Drawing.Point(6, 105);
             this.bdayLabel.Name = "bdayLabel";
             this.bdayLabel.Size = new System.Drawing.Size(45, 13);
             this.bdayLabel.TabIndex = 0;
@@ -575,14 +575,14 @@
             // 
             this.socialGBox.Controls.Add(this.isArmyCBox);
             this.socialGBox.Controls.Add(this.isOldmanCBox);
-            this.socialGBox.Controls.Add(this.label5);
-            this.socialGBox.Controls.Add(this.label4);
-            this.socialGBox.Controls.Add(this.textBox1);
-            this.socialGBox.Controls.Add(this.textBox2);
-            this.socialGBox.Controls.Add(this.textBox3);
-            this.socialGBox.Controls.Add(this.label1);
-            this.socialGBox.Controls.Add(this.label2);
-            this.socialGBox.Controls.Add(this.label3);
+            this.socialGBox.Controls.Add(this.armyLabel);
+            this.socialGBox.Controls.Add(this.oldieLabel);
+            this.socialGBox.Controls.Add(this.invalidTBox);
+            this.socialGBox.Controls.Add(this.citizenTBox);
+            this.socialGBox.Controls.Add(this.familyTBox);
+            this.socialGBox.Controls.Add(this.invalidLabel);
+            this.socialGBox.Controls.Add(this.citLabel);
+            this.socialGBox.Controls.Add(this.familyLabel);
             this.socialGBox.Location = new System.Drawing.Point(19, 26);
             this.socialGBox.Name = "socialGBox";
             this.socialGBox.Size = new System.Drawing.Size(311, 197);
@@ -611,71 +611,71 @@
             this.isOldmanCBox.Text = "True";
             this.isOldmanCBox.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // armyLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 167);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Army";
+            this.armyLabel.AutoSize = true;
+            this.armyLabel.Location = new System.Drawing.Point(6, 167);
+            this.armyLabel.Name = "armyLabel";
+            this.armyLabel.Size = new System.Drawing.Size(30, 13);
+            this.armyLabel.TabIndex = 8;
+            this.armyLabel.Text = "Army";
             // 
-            // label4
+            // oldieLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 134);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Oldman";
+            this.oldieLabel.AutoSize = true;
+            this.oldieLabel.Location = new System.Drawing.Point(4, 134);
+            this.oldieLabel.Name = "oldieLabel";
+            this.oldieLabel.Size = new System.Drawing.Size(43, 13);
+            this.oldieLabel.TabIndex = 6;
+            this.oldieLabel.Text = "Oldman";
             // 
-            // textBox1
+            // invalidTBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 20);
-            this.textBox1.TabIndex = 5;
+            this.invalidTBox.Location = new System.Drawing.Point(100, 98);
+            this.invalidTBox.Name = "invalidTBox";
+            this.invalidTBox.Size = new System.Drawing.Size(205, 20);
+            this.invalidTBox.TabIndex = 5;
             // 
-            // textBox2
+            // citizenTBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(100, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(205, 20);
-            this.textBox2.TabIndex = 4;
+            this.citizenTBox.Location = new System.Drawing.Point(100, 64);
+            this.citizenTBox.Name = "citizenTBox";
+            this.citizenTBox.Size = new System.Drawing.Size(205, 20);
+            this.citizenTBox.TabIndex = 4;
             // 
-            // textBox3
+            // familyTBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(100, 29);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(205, 20);
-            this.textBox3.TabIndex = 3;
+            this.familyTBox.Location = new System.Drawing.Point(100, 29);
+            this.familyTBox.Name = "familyTBox";
+            this.familyTBox.Size = new System.Drawing.Size(205, 20);
+            this.familyTBox.TabIndex = 3;
             // 
-            // label1
+            // invalidLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Invalid";
+            this.invalidLabel.AutoSize = true;
+            this.invalidLabel.Location = new System.Drawing.Point(6, 101);
+            this.invalidLabel.Name = "invalidLabel";
+            this.invalidLabel.Size = new System.Drawing.Size(38, 13);
+            this.invalidLabel.TabIndex = 2;
+            this.invalidLabel.Text = "Invalid";
             // 
-            // label2
+            // citLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Citizen";
+            this.citLabel.AutoSize = true;
+            this.citLabel.Location = new System.Drawing.Point(6, 67);
+            this.citLabel.Name = "citLabel";
+            this.citLabel.Size = new System.Drawing.Size(38, 13);
+            this.citLabel.TabIndex = 1;
+            this.citLabel.Text = "Citizen";
             // 
-            // label3
+            // familyLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Family";
+            this.familyLabel.AutoSize = true;
+            this.familyLabel.Location = new System.Drawing.Point(6, 32);
+            this.familyLabel.Name = "familyLabel";
+            this.familyLabel.Size = new System.Drawing.Size(36, 13);
+            this.familyLabel.TabIndex = 0;
+            this.familyLabel.Text = "Family";
             // 
             // backBtn
             // 
@@ -701,7 +701,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 300);
+            this.ClientSize = new System.Drawing.Size(355, 300);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.passportGBox);
@@ -714,6 +714,7 @@
             this.Controls.Add(this.infoGBox);
             this.Name = "AddForm";
             this.Text = "AddForm";
+            this.Shown += new System.EventHandler(this.AddForm_Shown);
             this.infoGBox.ResumeLayout(false);
             this.infoGBox.PerformLayout();
             this.birthGBox.ResumeLayout(false);
@@ -779,14 +780,14 @@
         private System.Windows.Forms.Label posLabel;
         private System.Windows.Forms.Label wplaceLabel;
         private System.Windows.Forms.GroupBox socialGBox;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox invalidTBox;
+        private System.Windows.Forms.TextBox citizenTBox;
+        private System.Windows.Forms.TextBox familyTBox;
+        private System.Windows.Forms.Label invalidLabel;
+        private System.Windows.Forms.Label citLabel;
+        private System.Windows.Forms.Label familyLabel;
+        private System.Windows.Forms.Label armyLabel;
+        private System.Windows.Forms.Label oldieLabel;
         private System.Windows.Forms.CheckBox isArmyCBox;
         private System.Windows.Forms.CheckBox isOldmanCBox;
         private System.Windows.Forms.RadioButton isFemaleRBtn;

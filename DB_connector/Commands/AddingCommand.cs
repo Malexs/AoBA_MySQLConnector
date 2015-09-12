@@ -22,14 +22,14 @@ namespace Bank_Assistant.Commands
          */
         public void Execute(MySqlCommand myCommand,params String[] args)
         {
-            myCom = myCommand;
-            AddUserInfo(args[0], args[1], args[2]);
-            AddUserBirth(args[3], args[4], args[5]);
-            //AddUserPassInfo(args[6], args[7], args[8]);
-            //AddUserAddresses();
-            //AddUserContacts();
-            //AddUserWork();
-            //AddUserSocial();
+                myCom = myCommand;
+                AddUserInfo(args[0], args[1], args[2]);
+                AddUserBirth(args[3], args[4], args[5]);
+                AddUserPassInfo(args[6], args[7], args[8], args[9], args[10]);
+                AddUserAddresses(args[11], args[12], args[13], args[14]);
+                AddUserContacts(args[15], args[16], args[17]);
+                AddUserWork(args[18], args[19], args[20]);
+                AddUserSocial(args[21], args[22], args[23], args[24], args[25]);           
         }
 
         /*
@@ -84,13 +84,16 @@ namespace Bank_Assistant.Commands
         private void AddUserPassInfo(params String[] args)
         {
             String userPassportString = @"INSERT INTO user_passport_info(user_id,user_passport_serie,user_passport_number,
-                                                user_passport_ID) VALUES" + "(@id,@serie,@number,@ppID);";
+                                                user_passport_ID,user_passport_authority,user_passport_issue) 
+                                                VALUES" + "(@id,@serie,@number,@ppID,@auth,@issue);";
             myCom.CommandText = userPassportString;
             myCom.Parameters.Clear();
             myCom.Parameters.AddWithValue("@id", lastID);
             myCom.Parameters.AddWithValue("@serie", args[0]);
             myCom.Parameters.AddWithValue("@number", args[1]);
             myCom.Parameters.AddWithValue("@ppID", args[2]);
+            myCom.Parameters.AddWithValue("@auth", args[3]);
+            myCom.Parameters.AddWithValue("@issue", args[4]);
 
             myCom.ExecuteNonQuery();
         }
@@ -105,7 +108,7 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserAddresses(params String[] args)
         {
-            String userAddressesString = @"INSERT INTO user_passport_info(user_id,user_actual_town,user_actual_address,
+            String userAddressesString = @"INSERT INTO user_addresses(user_id,user_actual_town,user_actual_address,
                                                 user_official_town,user_official_address) VALUES" + 
                                                 "(@id,@act_town,@act_addr,@off_town,@off_addr);";
             myCom.CommandText = userAddressesString;
