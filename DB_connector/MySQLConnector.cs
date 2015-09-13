@@ -20,7 +20,7 @@ namespace Bank_Assistant
         static String connString = @"server=127.0.0.1;userid=root;password=admin;database=adb_1";
 
 
-        /*args: ...  - TODO  */
+        /*args: the whole user information  */
         public void AddInformation(params String[] args)
         {
             using (MySqlConnection myCon = new MySqlConnection(connString))
@@ -31,48 +31,39 @@ namespace Bank_Assistant
                  using (AddingCommand addCmd = new AddingCommand())
                  {
                      addCmd.Execute(myCommand, args);
-                     //addCmd.AddUserInfo(myCommand, args[0], args[1], args[2]);
-                     //addCmd.AddUserBirth(args[3], args[4], args[5]);
                  }
             myCommand.Connection.Close();               
             }
         }
 
-        /*args: field sorted by - TODO */
-        public DataTable GetInformation()
+        /* */
+        public DataTable SelectInformation(params Object[] args)
         {
-
-            String selecting = @"SELECT * FROM user_info
-                                INNER JOIN user_birth_info USING (user_id)
-                                INNER JOIN user_passport_info USING (user_id)
-                                INNER JOIN user_addresses USING (user_id)
-                                INNER JOIN user_contacts USING (user_id)
-                                INNER JOIN user_work_info USING (user_id)
-                                INNER JOIN user_social USING (user_id)
-                                ORDER BY user_info.user_sname;";
-            DataTable dataTable = null;
-
+            DataTable result = null;
             using (MySqlConnection myCon = new MySqlConnection(connString))
             {
-                try
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
                 {
-                    dataTable = new DataTable();
-                    myCommand = new MySqlCommand(selecting, myCon);
-                    myCommand.Connection.Open();
-                    using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                    switch (args.Length)
                     {
-                        if (dataReader.HasRows)
-                        {
-                            dataTable.Load(dataReader);
-                        }
+                        case 0:
+                            result = SelCmd.GetReqInfo();
+                            break;
+                        case 1:
+                            result = SelCmd.GetReqInfo((int)args[0]);
+                            break;
+                        case 2:
+                        case 3:
+                            result = SelCmd.GetReqInfo((String)args[0], (String)args[1], (String)args[2]);
+                            break;
                     }
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                myCommand.Connection.Close();
             }
-            return dataTable;
+            return result;
         }
 
         public String UpdateInfo()
@@ -95,15 +86,16 @@ namespace Bank_Assistant
             }
         }
 
-        public String DeleteInfo()
+        public String DeleteInfo(String idString)
         {
-            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=6;";
+            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=@id;";
 
             using (MySqlConnection myCon = new MySqlConnection(connString))
             {
                 try
                 {
                     myCommand = new MySqlCommand(deleteString, myCon);
+                    myCommand.Parameters.AddWithValue("@id", idString);
                     myCommand.Connection.Open();
                     myCommand.ExecuteReader();
                     myCommand.Connection.Close();

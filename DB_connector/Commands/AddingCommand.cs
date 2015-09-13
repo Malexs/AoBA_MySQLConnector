@@ -33,10 +33,11 @@ namespace Bank_Assistant.Commands
                     AddUserWork(args[18], args[19], args[20]);
                     AddUserSocial(args[21], args[22], args[23], args[24], args[25]);
                 }
-            catch (MySqlException)
-            {
-                CancelLastInsert();
-            }
+                catch (MySqlException ex)
+                {
+                    CancelLastInsert();
+                    throw ex;
+                }
         }
 
         /*
@@ -48,7 +49,7 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserInfo(params String[] args)
         {
-            String infoInsertString = @"INSERT INTO user_info(user_fname,user_sname,user_fatname) 
+            String infoInsertString = @"INSERT INTO user_info(First_name,Second_name,Fathers_name) 
                                                 VALUES" + "(@client_name,@client_surname,@client_fname);";
             myCom.CommandText = infoInsertString;
             myCom.Parameters.Clear();
@@ -69,7 +70,7 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserBirth(params String[] args)
         {
-            String birthInsertString = @"INSERT INTO user_birth_info(user_id,user_birthday,user_sex,user_birth_place) 
+            String birthInsertString = @"INSERT INTO user_birth_info(user_id,Birthday,Sex,Birth_place) 
                                                 VALUES" + "(@id,@birthday,@sex,@place);";
             myCom.CommandText = birthInsertString;
             myCom.Parameters.Clear();
@@ -90,8 +91,8 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserPassInfo(params String[] args)
         {
-            String userPassportString = @"INSERT INTO user_passport_info(user_id,user_passport_serie,user_passport_number,
-                                                user_passport_ID,user_passport_authority,user_passport_issue) 
+            String userPassportString = @"INSERT INTO user_passport_info(user_id,Passport_serie,Passport_number,
+                                                Passport_ID,Passport_authority,Passport_issue) 
                                                 VALUES" + "(@id,@serie,@number,@ppID,@auth,@issue);";
             myCom.CommandText = userPassportString;
             myCom.Parameters.Clear();
@@ -115,8 +116,8 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserAddresses(params String[] args)
         {
-            String userAddressesString = @"INSERT INTO user_addresses(user_id,user_actual_town,user_actual_address,
-                                                user_official_town,user_official_address) VALUES" + 
+            String userAddressesString = @"INSERT INTO user_addresses(user_id,Actual_town,Actual_address,
+                                                Official_town,Official_address) VALUES" + 
                                                 "(@id,@act_town,@act_addr,@off_town,@off_addr);";
             myCom.CommandText = userAddressesString;
             myCom.Parameters.Clear();
@@ -138,8 +139,8 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserContacts(params String[] args)
         {
-            String userContactString = @"INSERT INTO user_contacts(user_id,user_homephone,user_mobilephone,
-                                                user_email) VALUES" + "(@id,@home,@mobile,@email);";
+            String userContactString = @"INSERT INTO user_contacts(user_id,Homephone,Mobilephone,
+                                                Email) VALUES" + "(@id,@home,@mobile,@email);";
             myCom.CommandText = userContactString;
             myCom.Parameters.Clear();
             myCom.Parameters.AddWithValue("@id", lastID);
@@ -159,8 +160,8 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserWork(params String[] args)
         {
-            String userWorkString = @"INSERT INTO user_work_info(user_id,user_workplace,user_position,
-                                                user_month_profit) VALUES" + "(@id,@place,@pos,@salary);";
+            String userWorkString = @"INSERT INTO user_work_info(user_id,Workplace,Position,
+                                                Salary) VALUES" + "(@id,@place,@pos,@salary);";
             myCom.CommandText = userWorkString;
             myCom.Parameters.Clear();
             myCom.Parameters.AddWithValue("@id", lastID);
@@ -182,8 +183,8 @@ namespace Bank_Assistant.Commands
          */
         private void AddUserSocial(params String[] args)
         {
-            String userAddressesString = @"INSERT INTO user_social(user_id,user_family,user_citizen,
-                                                user_invalid,user_oldman,user_army) VALUES" +
+            String userAddressesString = @"INSERT INTO user_social(user_id,Family,Citizen,
+                                                Invalid,Oldie,Army) VALUES" +
                                                 "(@id,@family,@citizen,@invalid,@old,@army);";
             myCom.CommandText = userAddressesString;
             myCom.Parameters.Clear();
@@ -197,6 +198,9 @@ namespace Bank_Assistant.Commands
             myCom.ExecuteNonQuery();
         }
 
+        /*
+         * Delete last inserted information (with help of cascade database delete)
+         */
         private void CancelLastInsert()
         {
             String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=@id;";

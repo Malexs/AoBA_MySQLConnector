@@ -30,7 +30,7 @@ namespace Bank_Assistant
             {
                 try
                 {
-                    InfoDataGrid.DataSource = msc.GetInformation();
+                    InfoDataGrid.DataSource = msc.SelectInformation();
                     InfoDataGrid.Columns[0].Visible = false;
                 }
                 catch(Exception ex)
@@ -50,10 +50,26 @@ namespace Bank_Assistant
 
         private void DelBtn_Click(object sender, EventArgs e)
         {
+            Int32 i = InfoDataGrid.CurrentRow.Index;
+            String selectedString = InfoDataGrid[0, i].Value.ToString();//if (InfoDataGrid.)
+            Console.WriteLine(selectedString);
             using (MySQLConnector msc = new MySQLConnector())
             {
-                MessageBox.Show(msc.DeleteInfo());
+                MessageBox.Show(msc.DeleteInfo(selectedString));
             }
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            SearchForm searchForm = new SearchForm();
+            searchForm.SaveParent(this);
+            searchForm.Show();
+        }
+
+        public void ShowSearch(DataTable table)
+        {
+            InfoDataGrid.DataSource = table;
+            InfoDataGrid.Columns[0].Visible = false;
         }
     }
 }

@@ -56,11 +56,11 @@
             this.nmbLabel = new System.Windows.Forms.Label();
             this.serieLabel = new System.Windows.Forms.Label();
             this.addrGBox = new System.Windows.Forms.GroupBox();
+            this.offTownComBox = new System.Windows.Forms.ComboBox();
+            this.curTownComBox = new System.Windows.Forms.ComboBox();
             this.offAddrTBox = new System.Windows.Forms.TextBox();
             this.offAddrLabel = new System.Windows.Forms.Label();
-            this.offTownTBox = new System.Windows.Forms.TextBox();
             this.curAddrTBox = new System.Windows.Forms.TextBox();
-            this.curTownTBox = new System.Windows.Forms.TextBox();
             this.offTownLabel = new System.Windows.Forms.Label();
             this.curAddrLabel = new System.Windows.Forms.Label();
             this.curTownLabel = new System.Windows.Forms.Label();
@@ -83,14 +83,14 @@
             this.isOldmanCBox = new System.Windows.Forms.CheckBox();
             this.armyLabel = new System.Windows.Forms.Label();
             this.oldieLabel = new System.Windows.Forms.Label();
-            this.invalidTBox = new System.Windows.Forms.TextBox();
-            this.citizenTBox = new System.Windows.Forms.TextBox();
-            this.familyTBox = new System.Windows.Forms.TextBox();
             this.invalidLabel = new System.Windows.Forms.Label();
             this.citLabel = new System.Windows.Forms.Label();
             this.familyLabel = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
+            this.familyComBox = new System.Windows.Forms.ComboBox();
+            this.citizenComBox = new System.Windows.Forms.ComboBox();
+            this.invalidComBox = new System.Windows.Forms.ComboBox();
             this.infoGBox.SuspendLayout();
             this.birthGBox.SuspendLayout();
             this.passportGBox.SuspendLayout();
@@ -174,7 +174,7 @@
             this.nextPageBtn.Location = new System.Drawing.Point(19, 247);
             this.nextPageBtn.Name = "nextPageBtn";
             this.nextPageBtn.Size = new System.Drawing.Size(75, 23);
-            this.nextPageBtn.TabIndex = 0;
+            this.nextPageBtn.TabIndex = 10;
             this.nextPageBtn.Text = "Next";
             this.nextPageBtn.UseVisualStyleBackColor = true;
             this.nextPageBtn.Click += new System.EventHandler(this.nextPageBtn_Click);
@@ -382,11 +382,11 @@
             // 
             // addrGBox
             // 
+            this.addrGBox.Controls.Add(this.offTownComBox);
+            this.addrGBox.Controls.Add(this.curTownComBox);
             this.addrGBox.Controls.Add(this.offAddrTBox);
             this.addrGBox.Controls.Add(this.offAddrLabel);
-            this.addrGBox.Controls.Add(this.offTownTBox);
             this.addrGBox.Controls.Add(this.curAddrTBox);
-            this.addrGBox.Controls.Add(this.curTownTBox);
             this.addrGBox.Controls.Add(this.offTownLabel);
             this.addrGBox.Controls.Add(this.curAddrLabel);
             this.addrGBox.Controls.Add(this.curTownLabel);
@@ -397,6 +397,24 @@
             this.addrGBox.TabStop = false;
             this.addrGBox.Text = "Addresses";
             this.addrGBox.Visible = false;
+            // 
+            // offTownComBox
+            // 
+            this.offTownComBox.FormattingEnabled = true;
+            this.offTownComBox.Location = new System.Drawing.Point(100, 98);
+            this.offTownComBox.Name = "offTownComBox";
+            this.offTownComBox.Size = new System.Drawing.Size(205, 21);
+            this.offTownComBox.TabIndex = 9;
+            this.offTownComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            // 
+            // curTownComBox
+            // 
+            this.curTownComBox.FormattingEnabled = true;
+            this.curTownComBox.Location = new System.Drawing.Point(100, 29);
+            this.curTownComBox.Name = "curTownComBox";
+            this.curTownComBox.Size = new System.Drawing.Size(205, 21);
+            this.curTownComBox.TabIndex = 8;
+            this.curTownComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // offAddrTBox
             // 
@@ -415,15 +433,6 @@
             this.offAddrLabel.TabIndex = 6;
             this.offAddrLabel.Text = "Official addr";
             // 
-            // offTownTBox
-            // 
-            this.offTownTBox.Location = new System.Drawing.Point(100, 98);
-            this.offTownTBox.MaxLength = 16;
-            this.offTownTBox.Name = "offTownTBox";
-            this.offTownTBox.Size = new System.Drawing.Size(205, 20);
-            this.offTownTBox.TabIndex = 5;
-            this.offTownTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
-            // 
             // curAddrTBox
             // 
             this.curAddrTBox.Location = new System.Drawing.Point(100, 64);
@@ -431,15 +440,6 @@
             this.curAddrTBox.Name = "curAddrTBox";
             this.curAddrTBox.Size = new System.Drawing.Size(205, 20);
             this.curAddrTBox.TabIndex = 4;
-            // 
-            // curTownTBox
-            // 
-            this.curTownTBox.Location = new System.Drawing.Point(100, 29);
-            this.curTownTBox.MaxLength = 16;
-            this.curTownTBox.Name = "curTownTBox";
-            this.curTownTBox.Size = new System.Drawing.Size(205, 20);
-            this.curTownTBox.TabIndex = 3;
-            this.curTownTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // offTownLabel
             // 
@@ -515,27 +515,27 @@
             this.mailLabel.AutoSize = true;
             this.mailLabel.Location = new System.Drawing.Point(6, 105);
             this.mailLabel.Name = "mailLabel";
-            this.mailLabel.Size = new System.Drawing.Size(35, 13);
+            this.mailLabel.Size = new System.Drawing.Size(61, 13);
             this.mailLabel.TabIndex = 2;
-            this.mailLabel.Text = "E-mail";
+            this.mailLabel.Text = "E-mail (n/q)";
             // 
             // mPhoneLabel
             // 
             this.mPhoneLabel.AutoSize = true;
             this.mPhoneLabel.Location = new System.Drawing.Point(6, 67);
             this.mPhoneLabel.Name = "mPhoneLabel";
-            this.mPhoneLabel.Size = new System.Drawing.Size(71, 13);
+            this.mPhoneLabel.Size = new System.Drawing.Size(97, 13);
             this.mPhoneLabel.TabIndex = 1;
-            this.mPhoneLabel.Text = "Mobile phone";
+            this.mPhoneLabel.Text = "Mobile phone (n/q)";
             // 
             // hPhoneLabel
             // 
             this.hPhoneLabel.AutoSize = true;
             this.hPhoneLabel.Location = new System.Drawing.Point(6, 32);
             this.hPhoneLabel.Name = "hPhoneLabel";
-            this.hPhoneLabel.Size = new System.Drawing.Size(68, 13);
+            this.hPhoneLabel.Size = new System.Drawing.Size(94, 13);
             this.hPhoneLabel.TabIndex = 0;
-            this.hPhoneLabel.Text = "Home phone";
+            this.hPhoneLabel.Text = "Home phone (n/q)";
             // 
             // workGBox
             // 
@@ -585,37 +585,37 @@
             this.salaryLabel.AutoSize = true;
             this.salaryLabel.Location = new System.Drawing.Point(6, 105);
             this.salaryLabel.Name = "salaryLabel";
-            this.salaryLabel.Size = new System.Drawing.Size(36, 13);
+            this.salaryLabel.Size = new System.Drawing.Size(62, 13);
             this.salaryLabel.TabIndex = 2;
-            this.salaryLabel.Text = "Salary";
+            this.salaryLabel.Text = "Salary (n/q)";
             // 
             // posLabel
             // 
             this.posLabel.AutoSize = true;
             this.posLabel.Location = new System.Drawing.Point(6, 67);
             this.posLabel.Name = "posLabel";
-            this.posLabel.Size = new System.Drawing.Size(44, 13);
+            this.posLabel.Size = new System.Drawing.Size(70, 13);
             this.posLabel.TabIndex = 1;
-            this.posLabel.Text = "Position";
+            this.posLabel.Text = "Position (n/q)";
             // 
             // wplaceLabel
             // 
             this.wplaceLabel.AutoSize = true;
             this.wplaceLabel.Location = new System.Drawing.Point(6, 32);
             this.wplaceLabel.Name = "wplaceLabel";
-            this.wplaceLabel.Size = new System.Drawing.Size(59, 13);
+            this.wplaceLabel.Size = new System.Drawing.Size(85, 13);
             this.wplaceLabel.TabIndex = 0;
-            this.wplaceLabel.Text = "Workplace";
+            this.wplaceLabel.Text = "Workplace (n/q)";
             // 
             // socialGBox
             // 
+            this.socialGBox.Controls.Add(this.invalidComBox);
+            this.socialGBox.Controls.Add(this.citizenComBox);
+            this.socialGBox.Controls.Add(this.familyComBox);
             this.socialGBox.Controls.Add(this.isArmyCBox);
             this.socialGBox.Controls.Add(this.isOldmanCBox);
             this.socialGBox.Controls.Add(this.armyLabel);
             this.socialGBox.Controls.Add(this.oldieLabel);
-            this.socialGBox.Controls.Add(this.invalidTBox);
-            this.socialGBox.Controls.Add(this.citizenTBox);
-            this.socialGBox.Controls.Add(this.familyTBox);
             this.socialGBox.Controls.Add(this.invalidLabel);
             this.socialGBox.Controls.Add(this.citLabel);
             this.socialGBox.Controls.Add(this.familyLabel);
@@ -665,32 +665,6 @@
             this.oldieLabel.TabIndex = 6;
             this.oldieLabel.Text = "Oldman";
             // 
-            // invalidTBox
-            // 
-            this.invalidTBox.Location = new System.Drawing.Point(100, 98);
-            this.invalidTBox.MaxLength = 16;
-            this.invalidTBox.Name = "invalidTBox";
-            this.invalidTBox.Size = new System.Drawing.Size(205, 20);
-            this.invalidTBox.TabIndex = 5;
-            // 
-            // citizenTBox
-            // 
-            this.citizenTBox.Location = new System.Drawing.Point(100, 64);
-            this.citizenTBox.MaxLength = 16;
-            this.citizenTBox.Name = "citizenTBox";
-            this.citizenTBox.Size = new System.Drawing.Size(205, 20);
-            this.citizenTBox.TabIndex = 4;
-            this.citizenTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
-            // 
-            // familyTBox
-            // 
-            this.familyTBox.Location = new System.Drawing.Point(100, 29);
-            this.familyTBox.MaxLength = 10;
-            this.familyTBox.Name = "familyTBox";
-            this.familyTBox.Size = new System.Drawing.Size(205, 20);
-            this.familyTBox.TabIndex = 3;
-            this.familyTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
-            // 
             // invalidLabel
             // 
             this.invalidLabel.AutoSize = true;
@@ -723,7 +697,7 @@
             this.backBtn.Location = new System.Drawing.Point(130, 247);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(75, 23);
-            this.backBtn.TabIndex = 8;
+            this.backBtn.TabIndex = 100;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
@@ -733,16 +707,42 @@
             this.Cancel.Location = new System.Drawing.Point(238, 247);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 9;
+            this.Cancel.TabIndex = 101;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // familyComBox
+            // 
+            this.familyComBox.FormattingEnabled = true;
+            this.familyComBox.Location = new System.Drawing.Point(100, 29);
+            this.familyComBox.Name = "familyComBox";
+            this.familyComBox.Size = new System.Drawing.Size(195, 21);
+            this.familyComBox.TabIndex = 11;
+            this.familyComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            // 
+            // citizenComBox
+            // 
+            this.citizenComBox.FormattingEnabled = true;
+            this.citizenComBox.Location = new System.Drawing.Point(100, 64);
+            this.citizenComBox.Name = "citizenComBox";
+            this.citizenComBox.Size = new System.Drawing.Size(195, 21);
+            this.citizenComBox.TabIndex = 12;
+            this.citizenComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            // 
+            // invalidComBox
+            // 
+            this.invalidComBox.FormattingEnabled = true;
+            this.invalidComBox.Location = new System.Drawing.Point(100, 98);
+            this.invalidComBox.Name = "invalidComBox";
+            this.invalidComBox.Size = new System.Drawing.Size(195, 21);
+            this.invalidComBox.TabIndex = 13;
             // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 300);
+            this.ClientSize = new System.Drawing.Size(353, 292);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.passportGBox);
@@ -798,9 +798,7 @@
         private System.Windows.Forms.Label nmbLabel;
         private System.Windows.Forms.Label serieLabel;
         private System.Windows.Forms.GroupBox addrGBox;
-        private System.Windows.Forms.TextBox offTownTBox;
         private System.Windows.Forms.TextBox curAddrTBox;
-        private System.Windows.Forms.TextBox curTownTBox;
         private System.Windows.Forms.Label offTownLabel;
         private System.Windows.Forms.Label curAddrLabel;
         private System.Windows.Forms.Label curTownLabel;
@@ -821,9 +819,6 @@
         private System.Windows.Forms.Label posLabel;
         private System.Windows.Forms.Label wplaceLabel;
         private System.Windows.Forms.GroupBox socialGBox;
-        private System.Windows.Forms.TextBox invalidTBox;
-        private System.Windows.Forms.TextBox citizenTBox;
-        private System.Windows.Forms.TextBox familyTBox;
         private System.Windows.Forms.Label invalidLabel;
         private System.Windows.Forms.Label citLabel;
         private System.Windows.Forms.Label familyLabel;
@@ -839,5 +834,10 @@
         private System.Windows.Forms.Label authLabel;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.ComboBox curTownComBox;
+        private System.Windows.Forms.ComboBox offTownComBox;
+        private System.Windows.Forms.ComboBox invalidComBox;
+        private System.Windows.Forms.ComboBox citizenComBox;
+        private System.Windows.Forms.ComboBox familyComBox;
     }
 }

@@ -20,3 +20,4 @@ C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.AddFor
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.MainForm.resources
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.Properties.Resources.resources
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csproj.GenerateResource.Cache
+C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.SearchForm.resources

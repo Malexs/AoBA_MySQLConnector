@@ -14,8 +14,6 @@ namespace Bank_Assistant
 {
     public partial class AddForm : Form
     {
-
-        MainForm parent = null;
         Int32 stage = 0;
         Int32 massiveCount = 0;
         String[] Info = new String[26];
@@ -25,11 +23,17 @@ namespace Bank_Assistant
             InitializeComponent();
         }
 
-        public void ValidateParent(MainForm arg)
-        {
-            parent = arg;
-        }
-
+        /*
+         * Show registration stage depending on last stage
+         * Stages:
+         * 0 - user info
+         * 1 - birth info
+         * 2 - passport info
+         * 3 - addresses info
+         * 4 - contacts info
+         * 5 - work info
+         * 6 - social info
+         */
         private void nextPageBtn_Click(object sender, EventArgs e)
         {
             switch (stage)
@@ -56,27 +60,30 @@ namespace Bank_Assistant
                         serieTBox.Focus();
                         stage++;
                     }
+                    else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 2:
                     if (CheckInfoCorrection(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
                     {
                         passportGBox.Visible = false;
                         addrGBox.Visible = true;
-                        curTownTBox.Focus();
+                        curTownComBox.Focus();
                         stage++;
                     }
+                    else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 3:
-                    if (CheckInfoCorrection(curTownTBox.Text,curAddrTBox.Text,offTownTBox.Text,offAddrTBox.Text))
+                    if (CheckInfoCorrection(curTownComBox.Text,curAddrTBox.Text,offTownComBox.Text,offAddrTBox.Text))
                     {
                         addrGBox.Visible = false;
                         contactsGBox.Visible = true;
                         hPhoneTBox.Focus();
                         stage++;
                     }
+                    else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 4:
-                    if (CheckInfoCorrection(hPhoneTBox.Text,mPhoneTBox.Text,mailTBox.Text))
+                    if (CheckNonrequiredInfo(0,hPhoneTBox.Text,mPhoneTBox.Text,mailTBox.Text))
                     {
                         contactsGBox.Visible = false;
                         workGBox.Visible = true;
@@ -85,11 +92,11 @@ namespace Bank_Assistant
                     }
                     break;
                 case 5:
-                    if (CheckInfoCorrection(wplaceTBox.Text,posTBox.Text,salaryTBox.Text))                   
+                    if (CheckNonrequiredInfo(1,wplaceTBox.Text, posTBox.Text, salaryTBox.Text))                   
                     {
                         workGBox.Visible = false;
                         socialGBox.Visible = true;
-                        familyTBox.Focus();
+                        familyComBox.Focus();
                         stage++;
                     }
                     break;                   
@@ -99,11 +106,12 @@ namespace Bank_Assistant
                         else oldie = "0";
                     if (isArmyCBox.Checked) army = "1";
                         else army = "0";
-                    if (CheckInfoCorrection(familyTBox.Text, citizenTBox.Text, invalidLabel.Text, oldie,army))
+                    if (CheckInfoCorrection(familyComBox.Text, citizenComBox.Text, invalidComBox.Text, oldie,army))
                     {
                         socialGBox.Visible = false;
                         stage++;
                     }
+                    else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 7:
                     SendInfo();
@@ -115,8 +123,10 @@ namespace Bank_Assistant
             }
         }
 
-
-        private Boolean CheckInfoCorrection(params String[] args) //Int32 start,Int32 end,
+        /*
+         * Checking required info and saving it into massive
+         */
+        private Boolean CheckInfoCorrection(params String[] args)
         {
             Int32 count = 0;
             switch (args.Length)
@@ -148,55 +158,74 @@ namespace Bank_Assistant
                 return true;
         }
 
+        /*
+         * Check non-required information
+         * Agrs:
+         *  mode:
+         *  0 - contacts, no INTs
+         *  1 - work, last INT
+         */
+        private Boolean CheckNonrequiredInfo(Int32 mode,params String[] args)
+        {
+            for (Int32 count = 0;count<=2;count++,massiveCount++)
+            {
+                if (args[count].Trim().Length == 0) Info[massiveCount] = "null";
+                else Info[massiveCount] = args[count].Trim();
+            }
+            if (mode==1)
+            {
+                if (args[2].Trim().Length==0) Info[massiveCount-1] = "0";
+            }
+            return true;
+        }
+
+        /*
+         * Sending the whole information to the database
+         */
         private void SendInfo()
         {
             using (MySQLConnector msc = new MySQLConnector())
             {
-                msc.AddInformation(Info);
+                try
+                {
+                    msc.AddInformation(Info);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
+        /*
+         * Hide date tips if entered
+         */
         private void dateBox_Enter(object sender, EventArgs e)
         {
-            if (sender == bdayBox)
+            TextBox box = (TextBox)sender;
+            if (box.Text.Equals("yyyy-MM-dd"))
             {
-                if (bdayBox.Text.Equals("yyyy-MM-dd"))
-                {
-                    bdayBox.ForeColor = Color.Black;
-                    bdayBox.Clear();
-                }
-            }
-            else if (sender == issueTBox)
-            {
-                if (issueTBox.Text.Equals("yyyy-MM-dd"))
-                {
-                    issueTBox.ForeColor = Color.Black;
-                    issueTBox.Clear();
-                }
+                box.ForeColor = Color.Black;
+                box.Clear();
             }
         }
 
+        /*
+         * Show date tips if nothing left in TBox
+         */
         private void dateBox_Leave(object sender, EventArgs e)
         {
-            if (sender == bdayBox)
+            TextBox box = (TextBox)sender;
+            if (box.Text.Equals(""))
             {
-                if (bdayBox.Text.Equals(""))
-                {
-                    bdayBox.ForeColor = Color.Gray;
-                    bdayBox.Text = "yyyy-MM-dd";
-                }
+                box.ForeColor = Color.Gray;
+                box.Text = "yyyy-MM-dd";
             }
-            else if (sender == issueTBox)
-            {
-                if (issueTBox.Text.Equals(""))
-                {
-                    issueTBox.ForeColor = Color.Gray;
-                    issueTBox.Text = "yyyy-MM-dd";
-                }
-            }
-            
         }
 
+        /*
+         * Return previous stage and massive iterator
+         */
         private void backBtn_Click(object sender, EventArgs e)
         {
             switch (stage)
@@ -245,6 +274,9 @@ namespace Bank_Assistant
             }
         }
 
+        /*
+         * Button "Cancel" to leave the registration
+         */
         private void Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -252,9 +284,25 @@ namespace Bank_Assistant
 
         private void AddForm_Shown(object sender, EventArgs e)
         {
+            using (MySQLConnector con = new MySQLConnector())
+            {
+                curTownComBox.DataSource = con.SelectInformation(0);
+                curTownComBox.DisplayMember = "town_Name";
+                offTownComBox.DataSource = con.SelectInformation(0);
+                offTownComBox.DisplayMember = "town_Name";
+                familyComBox.DataSource = con.SelectInformation(1);
+                familyComBox.DisplayMember = "condition";
+                citizenComBox.DataSource = con.SelectInformation(3);
+                citizenComBox.DisplayMember = "countries";
+                invalidComBox.DataSource = con.SelectInformation(2);
+                invalidComBox.DisplayMember = "invalid_cond";                
+            }
             fnameBox.Focus();
         }
 
+        /*
+         * Ban digits for text fields
+         */
         private void noDigits_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') 
@@ -265,6 +313,9 @@ namespace Bank_Assistant
             else e.Handled = true;
         }
 
+        /*
+         * Date info validating
+         */
         private void dates_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox obj = (TextBox)sender;
@@ -284,18 +335,34 @@ namespace Bank_Assistant
                     {
                         e.Handled = true;
                     }
+                    //Monthes: 01-12
+                    if (obj.Text.Length == 5 && e.KeyChar > '1' && e.KeyChar<='9') 
+                        e.Handled = true;
+                    if (obj.Text.Length == 6 && obj.Text[5] == '1' && e.KeyChar > '2' && e.KeyChar <= '9')
+                        e.Handled = true;
+                    //Days: 01-31
+                    if (obj.Text.Length == 8 && e.KeyChar > '3' && e.KeyChar <= '9')
+                        e.Handled = true;
+                    if (obj.Text.Length == 9 && obj.Text[8] > '2' && e.KeyChar > '1' && e.KeyChar <= '9')
+                        e.Handled = true;
+                    //For February days 01-28
+                    else if (obj.Text.Length == 9 &&  obj.Text[5] == '0' && obj.Text[6] == '2' && obj.Text[8] > '2')
+                        e.Handled = true;
+                    else if (obj.Text.Length == 9 && e.KeyChar > '8' && e.KeyChar <= '9' && obj.Text[5] == '0' && obj.Text[6] == '2' && obj.Text[8] == '2')
+                        e.Handled = true;
                 }
             }
         }
 
+        /*
+         * Ban letters for digital fields
+         */
         private void noLetters_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '+' && e.KeyChar != '(' && e.KeyChar != ')'
                 && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Delete)
                 e.Handled = true;
         }
-
-
-
+        
     }
 }
