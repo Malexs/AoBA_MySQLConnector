@@ -23,13 +23,20 @@ namespace Bank_Assistant.Commands
         public void Execute(MySqlCommand myCommand,params String[] args)
         {
                 myCom = myCommand;
-                AddUserInfo(args[0], args[1], args[2]);
-                AddUserBirth(args[3], args[4], args[5]);
-                AddUserPassInfo(args[6], args[7], args[8], args[9], args[10]);
-                AddUserAddresses(args[11], args[12], args[13], args[14]);
-                AddUserContacts(args[15], args[16], args[17]);
-                AddUserWork(args[18], args[19], args[20]);
-                AddUserSocial(args[21], args[22], args[23], args[24], args[25]);           
+                try
+                {
+                    AddUserInfo(args[0], args[1], args[2]);
+                    AddUserBirth(args[3], args[4], args[5]);
+                    AddUserPassInfo(args[6], args[7], args[8], args[9], args[10]);
+                    AddUserAddresses(args[11], args[12], args[13], args[14]);
+                    AddUserContacts(args[15], args[16], args[17]);
+                    AddUserWork(args[18], args[19], args[20]);
+                    AddUserSocial(args[21], args[22], args[23], args[24], args[25]);
+                }
+            catch (MySqlException)
+            {
+                CancelLastInsert();
+            }
         }
 
         /*
@@ -139,7 +146,7 @@ namespace Bank_Assistant.Commands
             myCom.Parameters.AddWithValue("@home", args[0]);
             myCom.Parameters.AddWithValue("@mobile", args[1]);
             myCom.Parameters.AddWithValue("@email", args[2]);
-
+            
             myCom.ExecuteNonQuery();
         }
 
@@ -187,6 +194,16 @@ namespace Bank_Assistant.Commands
             myCom.Parameters.AddWithValue("@old", args[3]);
             myCom.Parameters.AddWithValue("@army", args[4]);
 
+            myCom.ExecuteNonQuery();
+        }
+
+        private void CancelLastInsert()
+        {
+            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=@id;";
+
+            myCom.CommandText = deleteString;
+            myCom.Parameters.Clear();
+            myCom.Parameters.AddWithValue("@id", lastID);
             myCom.ExecuteNonQuery();
         }
 

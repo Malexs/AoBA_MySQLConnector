@@ -97,7 +97,7 @@ namespace Bank_Assistant
 
         public String DeleteInfo()
         {
-            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=4;";
+            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=6;";
 
             using (MySqlConnection myCon = new MySqlConnection(connString))
             {

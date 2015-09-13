@@ -118,23 +118,29 @@
             // fatNameBox
             // 
             this.fatNameBox.Location = new System.Drawing.Point(100, 98);
+            this.fatNameBox.MaxLength = 16;
             this.fatNameBox.Name = "fatNameBox";
             this.fatNameBox.Size = new System.Drawing.Size(205, 20);
             this.fatNameBox.TabIndex = 5;
+            this.fatNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // sNameBox
             // 
             this.sNameBox.Location = new System.Drawing.Point(100, 64);
+            this.sNameBox.MaxLength = 32;
             this.sNameBox.Name = "sNameBox";
             this.sNameBox.Size = new System.Drawing.Size(205, 20);
             this.sNameBox.TabIndex = 4;
+            this.sNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // fnameBox
             // 
             this.fnameBox.Location = new System.Drawing.Point(100, 29);
+            this.fnameBox.MaxLength = 16;
             this.fnameBox.Name = "fnameBox";
             this.fnameBox.Size = new System.Drawing.Size(205, 20);
             this.fnameBox.TabIndex = 3;
+            this.fnameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // fatNameLabel
             // 
@@ -215,19 +221,23 @@
             // bplaceBox
             // 
             this.bplaceBox.Location = new System.Drawing.Point(100, 29);
+            this.bplaceBox.MaxLength = 16;
             this.bplaceBox.Name = "bplaceBox";
             this.bplaceBox.Size = new System.Drawing.Size(205, 20);
             this.bplaceBox.TabIndex = 0;
+            this.bplaceBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // bdayBox
             // 
             this.bdayBox.ForeColor = System.Drawing.Color.Gray;
             this.bdayBox.Location = new System.Drawing.Point(100, 102);
+            this.bdayBox.MaxLength = 10;
             this.bdayBox.Name = "bdayBox";
             this.bdayBox.Size = new System.Drawing.Size(205, 20);
             this.bdayBox.TabIndex = 3;
             this.bdayBox.Text = "yyyy-MM-dd";
             this.bdayBox.Enter += new System.EventHandler(this.dateBox_Enter);
+            this.bdayBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dates_KeyPress);
             this.bdayBox.Leave += new System.EventHandler(this.dateBox_Leave);
             // 
             // bplaceLabel
@@ -281,11 +291,13 @@
             // 
             this.issueTBox.ForeColor = System.Drawing.Color.Gray;
             this.issueTBox.Location = new System.Drawing.Point(100, 164);
+            this.issueTBox.MaxLength = 10;
             this.issueTBox.Name = "issueTBox";
             this.issueTBox.Size = new System.Drawing.Size(205, 20);
             this.issueTBox.TabIndex = 9;
             this.issueTBox.Text = "yyyy-MM-dd";
             this.issueTBox.Enter += new System.EventHandler(this.dateBox_Enter);
+            this.issueTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dates_KeyPress);
             this.issueTBox.Leave += new System.EventHandler(this.dateBox_Leave);
             // 
             // issueLabel
@@ -300,9 +312,11 @@
             // authorityTBox
             // 
             this.authorityTBox.Location = new System.Drawing.Point(100, 131);
+            this.authorityTBox.MaxLength = 45;
             this.authorityTBox.Name = "authorityTBox";
             this.authorityTBox.Size = new System.Drawing.Size(205, 20);
             this.authorityTBox.TabIndex = 7;
+            this.authorityTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // authLabel
             // 
@@ -316,6 +330,7 @@
             // idTBox
             // 
             this.idTBox.Location = new System.Drawing.Point(100, 98);
+            this.idTBox.MaxLength = 14;
             this.idTBox.Name = "idTBox";
             this.idTBox.Size = new System.Drawing.Size(205, 20);
             this.idTBox.TabIndex = 5;
@@ -323,16 +338,20 @@
             // numberTBox
             // 
             this.numberTBox.Location = new System.Drawing.Point(100, 64);
+            this.numberTBox.MaxLength = 7;
             this.numberTBox.Name = "numberTBox";
             this.numberTBox.Size = new System.Drawing.Size(205, 20);
             this.numberTBox.TabIndex = 4;
+            this.numberTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noLetters_KeyPress);
             // 
             // serieTBox
             // 
             this.serieTBox.Location = new System.Drawing.Point(100, 29);
+            this.serieTBox.MaxLength = 2;
             this.serieTBox.Name = "serieTBox";
             this.serieTBox.Size = new System.Drawing.Size(205, 20);
             this.serieTBox.TabIndex = 3;
+            this.serieTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // idLabel
             // 
@@ -382,6 +401,7 @@
             // offAddrTBox
             // 
             this.offAddrTBox.Location = new System.Drawing.Point(100, 131);
+            this.offAddrTBox.MaxLength = 32;
             this.offAddrTBox.Name = "offAddrTBox";
             this.offAddrTBox.Size = new System.Drawing.Size(205, 20);
             this.offAddrTBox.TabIndex = 7;
@@ -398,13 +418,16 @@
             // offTownTBox
             // 
             this.offTownTBox.Location = new System.Drawing.Point(100, 98);
+            this.offTownTBox.MaxLength = 16;
             this.offTownTBox.Name = "offTownTBox";
             this.offTownTBox.Size = new System.Drawing.Size(205, 20);
             this.offTownTBox.TabIndex = 5;
+            this.offTownTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // curAddrTBox
             // 
             this.curAddrTBox.Location = new System.Drawing.Point(100, 64);
+            this.curAddrTBox.MaxLength = 32;
             this.curAddrTBox.Name = "curAddrTBox";
             this.curAddrTBox.Size = new System.Drawing.Size(205, 20);
             this.curAddrTBox.TabIndex = 4;
@@ -412,9 +435,11 @@
             // curTownTBox
             // 
             this.curTownTBox.Location = new System.Drawing.Point(100, 29);
+            this.curTownTBox.MaxLength = 16;
             this.curTownTBox.Name = "curTownTBox";
             this.curTownTBox.Size = new System.Drawing.Size(205, 20);
             this.curTownTBox.TabIndex = 3;
+            this.curTownTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // offTownLabel
             // 
@@ -462,6 +487,7 @@
             // mailTBox
             // 
             this.mailTBox.Location = new System.Drawing.Point(100, 98);
+            this.mailTBox.MaxLength = 40;
             this.mailTBox.Name = "mailTBox";
             this.mailTBox.Size = new System.Drawing.Size(205, 20);
             this.mailTBox.TabIndex = 5;
@@ -469,16 +495,20 @@
             // mPhoneTBox
             // 
             this.mPhoneTBox.Location = new System.Drawing.Point(100, 64);
+            this.mPhoneTBox.MaxLength = 15;
             this.mPhoneTBox.Name = "mPhoneTBox";
             this.mPhoneTBox.Size = new System.Drawing.Size(205, 20);
             this.mPhoneTBox.TabIndex = 4;
+            this.mPhoneTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noLetters_KeyPress);
             // 
             // hPhoneTBox
             // 
             this.hPhoneTBox.Location = new System.Drawing.Point(100, 29);
+            this.hPhoneTBox.MaxLength = 15;
             this.hPhoneTBox.Name = "hPhoneTBox";
             this.hPhoneTBox.Size = new System.Drawing.Size(205, 20);
             this.hPhoneTBox.TabIndex = 3;
+            this.hPhoneTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noLetters_KeyPress);
             // 
             // mailLabel
             // 
@@ -526,23 +556,29 @@
             // salaryTBox
             // 
             this.salaryTBox.Location = new System.Drawing.Point(100, 98);
+            this.salaryTBox.MaxLength = 20;
             this.salaryTBox.Name = "salaryTBox";
             this.salaryTBox.Size = new System.Drawing.Size(205, 20);
             this.salaryTBox.TabIndex = 5;
+            this.salaryTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noLetters_KeyPress);
             // 
             // posTBox
             // 
             this.posTBox.Location = new System.Drawing.Point(100, 64);
+            this.posTBox.MaxLength = 32;
             this.posTBox.Name = "posTBox";
             this.posTBox.Size = new System.Drawing.Size(205, 20);
             this.posTBox.TabIndex = 4;
+            this.posTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // wplaceTBox
             // 
             this.wplaceTBox.Location = new System.Drawing.Point(100, 29);
+            this.wplaceTBox.MaxLength = 16;
             this.wplaceTBox.Name = "wplaceTBox";
             this.wplaceTBox.Size = new System.Drawing.Size(205, 20);
             this.wplaceTBox.TabIndex = 3;
+            this.wplaceTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // salaryLabel
             // 
@@ -632,6 +668,7 @@
             // invalidTBox
             // 
             this.invalidTBox.Location = new System.Drawing.Point(100, 98);
+            this.invalidTBox.MaxLength = 16;
             this.invalidTBox.Name = "invalidTBox";
             this.invalidTBox.Size = new System.Drawing.Size(205, 20);
             this.invalidTBox.TabIndex = 5;
@@ -639,16 +676,20 @@
             // citizenTBox
             // 
             this.citizenTBox.Location = new System.Drawing.Point(100, 64);
+            this.citizenTBox.MaxLength = 16;
             this.citizenTBox.Name = "citizenTBox";
             this.citizenTBox.Size = new System.Drawing.Size(205, 20);
             this.citizenTBox.TabIndex = 4;
+            this.citizenTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // familyTBox
             // 
             this.familyTBox.Location = new System.Drawing.Point(100, 29);
+            this.familyTBox.MaxLength = 10;
             this.familyTBox.Name = "familyTBox";
             this.familyTBox.Size = new System.Drawing.Size(205, 20);
             this.familyTBox.TabIndex = 3;
+            this.familyTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
             // 
             // invalidLabel
             // 
@@ -701,7 +742,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 300);
+            this.ClientSize = new System.Drawing.Size(884, 300);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.passportGBox);

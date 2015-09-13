@@ -255,6 +255,46 @@ namespace Bank_Assistant
             fnameBox.Focus();
         }
 
+        private void noDigits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') 
+                || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Delete || e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = false;
+            }
+            else e.Handled = true;
+        }
+
+        private void dates_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox obj = (TextBox)sender;
+            if((e.KeyChar<'0' || e.KeyChar>'9') && e.KeyChar!='-'
+                && e.KeyChar!=(char)Keys.Back && e.KeyChar!=(char)Keys.Delete)
+            {
+                    e.Handled = true;
+            }
+            else
+            {
+                if ((obj.Text.Length < 4 || (obj.Text.Length > 4 && obj.Text.Length < 7) 
+                    || obj.Text.Length > 7) && e.KeyChar == '-')
+                    e.Handled = true;
+                else 
+                {
+                    if ((obj.Text.Length==4 || obj.Text.Length==7)&&(e.KeyChar>='0' && e.KeyChar<='9'))
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private void noLetters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '+' && e.KeyChar != '(' && e.KeyChar != ')'
+                && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Delete)
+                e.Handled = true;
+        }
+
 
 
     }
