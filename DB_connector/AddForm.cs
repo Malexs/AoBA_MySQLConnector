@@ -50,20 +50,25 @@ namespace Bank_Assistant
                     break;
                 case 1:
                     String sex = "";
-                    if (isMaleRBtn.Checked)
-                        sex = "M";
-                    else sex = "F";
-                    if (CheckInfoCorrection(bdayBox.Text, sex, bplaceBox.Text))
+                    if (bdayBox.Text.Length == bdayBox.MaxLength)
                     {
-                        birthGBox.Visible = false;
-                        passportGBox.Visible = true;
-                        serieTBox.Focus();
-                        stage++;
+                        if (isMaleRBtn.Checked)
+                            sex = "M";
+                        else sex = "F";
+                        if (CheckInfoCorrection(bdayBox.Text, sex, bplaceBox.Text))
+                        {
+                            birthGBox.Visible = false;
+                            passportGBox.Visible = true;
+                            serieTBox.Focus();
+                            stage++;
+                        }
+                        else MessageBox.Show("Some necessary fields wasn't filled");
                     }
                     else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 2:
-                    if (CheckInfoCorrection(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
+                    if (CheckPassportMasks(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
+                        //CheckInfoCorrection(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
                     {
                         passportGBox.Visible = false;
                         addrGBox.Visible = true;
@@ -83,7 +88,8 @@ namespace Bank_Assistant
                     else MessageBox.Show("Some necessary fields wasn't filled");
                     break;
                 case 4:
-                    if (CheckNonrequiredInfo(0,hPhoneTBox.Text,mPhoneTBox.Text,mailTBox.Text))
+                    if (CheckPhonesMasks(hPhoneTBox.Text, mPhoneTBox.Text, mailTBox.Text))
+                        //CheckNonrequiredInfo(0,hPhoneTBox.Text,mPhoneTBox.Text,mailTBox.Text))
                     {
                         contactsGBox.Visible = false;
                         workGBox.Visible = true;
@@ -121,6 +127,24 @@ namespace Bank_Assistant
                     MessageBox.Show("WTF!?");
                     break;
             }
+        }
+
+        private Boolean CheckPassportMasks(params String[] args)
+        {
+            //serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text)
+            if (args[0].Length < 2 || args[1].Length < 7 || args[2].Length < 14 || args[4].Length < 10)
+                return false;
+            else return CheckInfoCorrection(args);
+        }
+
+        private Boolean CheckPhonesMasks(params String[] args)
+        {
+            for (int i=0;i<2;i++)
+            {
+                if (args[i].Length<15)
+                    return false;
+            }
+            return CheckNonrequiredInfo(0,args);
         }
 
         /*

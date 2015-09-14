@@ -53,6 +53,7 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\DeletingCommand.cs" />
     <Compile Include="Commands\SelectingCommand.cs" />
     <Compile Include="Commands\AddingCommand.cs" />
     <Compile Include="MainForm.cs">

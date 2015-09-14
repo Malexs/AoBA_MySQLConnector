@@ -57,6 +57,7 @@ namespace Bank_Assistant
             {
                 MessageBox.Show(msc.DeleteInfo(selectedString));
             }
+            InfoDataGrid.Rows.RemoveAt(i);
         }
 
         private void searchBtn_Click(object sender, EventArgs e)

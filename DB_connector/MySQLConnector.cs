@@ -88,20 +88,21 @@ namespace Bank_Assistant
 
         public String DeleteInfo(String idString)
         {
-            String deleteString = @"DELETE FROM user_info WHERE user_info.user_id=@id;";
-
             using (MySqlConnection myCon = new MySqlConnection(connString))
             {
                 try
                 {
-                    myCommand = new MySqlCommand(deleteString, myCon);
-                    myCommand.Parameters.AddWithValue("@id", idString);
+                    myCommand = new MySqlCommand();
+                    myCommand.Connection = myCon;
                     myCommand.Connection.Open();
-                    myCommand.ExecuteReader();
+                    using (DeletingCommand delCmd = new DeletingCommand(myCommand))
+                    {
+                        delCmd.Execute(idString);
+                    }
                     myCommand.Connection.Close();
                     return "Okay";
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
                     return ex.ToString();
                 }
