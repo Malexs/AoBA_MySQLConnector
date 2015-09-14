@@ -35,23 +35,30 @@ namespace Bank_Assistant
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Empty base");
                 }
             }
         }
 
         private void UpdBtn_Click(object sender, EventArgs e)
         {
-            using (MySQLConnector msc = new MySQLConnector())
+            DataGridViewRow row = InfoDataGrid.CurrentRow;
+            if (row!=null)
             {
-                MessageBox.Show(msc.UpdateInfo());
+                AddForm af = new AddForm();
+                af.ShowSelectedUser(row);
+                af.Show();
             }
+            //using (MySQLConnector msc = new MySQLConnector())
+            //{
+            //    MessageBox.Show(msc.UpdateInfo());
+            //}
         }
 
         private void DelBtn_Click(object sender, EventArgs e)
         {
             Int32 i = InfoDataGrid.CurrentRow.Index;
-            String selectedString = InfoDataGrid[0, i].Value.ToString();//if (InfoDataGrid.)
+            String selectedString = InfoDataGrid[0, i].Value.ToString();    //get selected user ID
             Console.WriteLine(selectedString);
             using (MySQLConnector msc = new MySQLConnector())
             {

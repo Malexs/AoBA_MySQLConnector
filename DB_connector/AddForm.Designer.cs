@@ -79,6 +79,9 @@
             this.posLabel = new System.Windows.Forms.Label();
             this.wplaceLabel = new System.Windows.Forms.Label();
             this.socialGBox = new System.Windows.Forms.GroupBox();
+            this.invalidComBox = new System.Windows.Forms.ComboBox();
+            this.citizenComBox = new System.Windows.Forms.ComboBox();
+            this.familyComBox = new System.Windows.Forms.ComboBox();
             this.isArmyCBox = new System.Windows.Forms.CheckBox();
             this.isOldmanCBox = new System.Windows.Forms.CheckBox();
             this.armyLabel = new System.Windows.Forms.Label();
@@ -88,9 +91,8 @@
             this.familyLabel = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
-            this.familyComBox = new System.Windows.Forms.ComboBox();
-            this.citizenComBox = new System.Windows.Forms.ComboBox();
-            this.invalidComBox = new System.Windows.Forms.ComboBox();
+            this.updBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
             this.infoGBox.SuspendLayout();
             this.birthGBox.SuspendLayout();
             this.passportGBox.SuspendLayout();
@@ -409,8 +411,8 @@
             // 
             // curTownComBox
             // 
-            this.curTownComBox.FormattingEnabled = true;
             this.curTownComBox.Location = new System.Drawing.Point(100, 29);
+            this.curTownComBox.MaxLength = 16;
             this.curTownComBox.Name = "curTownComBox";
             this.curTownComBox.Size = new System.Drawing.Size(205, 21);
             this.curTownComBox.TabIndex = 8;
@@ -627,6 +629,32 @@
             this.socialGBox.Text = "Social";
             this.socialGBox.Visible = false;
             // 
+            // invalidComBox
+            // 
+            this.invalidComBox.FormattingEnabled = true;
+            this.invalidComBox.Location = new System.Drawing.Point(100, 98);
+            this.invalidComBox.Name = "invalidComBox";
+            this.invalidComBox.Size = new System.Drawing.Size(195, 21);
+            this.invalidComBox.TabIndex = 13;
+            // 
+            // citizenComBox
+            // 
+            this.citizenComBox.FormattingEnabled = true;
+            this.citizenComBox.Location = new System.Drawing.Point(100, 64);
+            this.citizenComBox.Name = "citizenComBox";
+            this.citizenComBox.Size = new System.Drawing.Size(195, 21);
+            this.citizenComBox.TabIndex = 12;
+            this.citizenComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            // 
+            // familyComBox
+            // 
+            this.familyComBox.FormattingEnabled = true;
+            this.familyComBox.Location = new System.Drawing.Point(100, 29);
+            this.familyComBox.Name = "familyComBox";
+            this.familyComBox.Size = new System.Drawing.Size(195, 21);
+            this.familyComBox.TabIndex = 11;
+            this.familyComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            // 
             // isArmyCBox
             // 
             this.isArmyCBox.AutoSize = true;
@@ -712,37 +740,33 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // familyComBox
+            // updBtn
             // 
-            this.familyComBox.FormattingEnabled = true;
-            this.familyComBox.Location = new System.Drawing.Point(100, 29);
-            this.familyComBox.Name = "familyComBox";
-            this.familyComBox.Size = new System.Drawing.Size(195, 21);
-            this.familyComBox.TabIndex = 11;
-            this.familyComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
+            this.updBtn.Location = new System.Drawing.Point(20, 218);
+            this.updBtn.Name = "updBtn";
+            this.updBtn.Size = new System.Drawing.Size(75, 23);
+            this.updBtn.TabIndex = 102;
+            this.updBtn.Text = "Update";
+            this.updBtn.UseVisualStyleBackColor = true;
+            this.updBtn.Click += new System.EventHandler(this.updBtn_Click);
             // 
-            // citizenComBox
+            // SaveBtn
             // 
-            this.citizenComBox.FormattingEnabled = true;
-            this.citizenComBox.Location = new System.Drawing.Point(100, 64);
-            this.citizenComBox.Name = "citizenComBox";
-            this.citizenComBox.Size = new System.Drawing.Size(195, 21);
-            this.citizenComBox.TabIndex = 12;
-            this.citizenComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.noDigits_KeyPress);
-            // 
-            // invalidComBox
-            // 
-            this.invalidComBox.FormattingEnabled = true;
-            this.invalidComBox.Location = new System.Drawing.Point(100, 98);
-            this.invalidComBox.Name = "invalidComBox";
-            this.invalidComBox.Size = new System.Drawing.Size(195, 21);
-            this.invalidComBox.TabIndex = 13;
+            this.SaveBtn.Location = new System.Drawing.Point(130, 218);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(75, 23);
+            this.SaveBtn.TabIndex = 103;
+            this.SaveBtn.Text = "Save";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 292);
+            this.Controls.Add(this.SaveBtn);
+            this.Controls.Add(this.updBtn);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.passportGBox);
@@ -839,5 +863,7 @@
         private System.Windows.Forms.ComboBox invalidComBox;
         private System.Windows.Forms.ComboBox citizenComBox;
         private System.Windows.Forms.ComboBox familyComBox;
+        private System.Windows.Forms.Button updBtn;
+        private System.Windows.Forms.Button SaveBtn;
     }
 }

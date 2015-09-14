@@ -21,6 +21,8 @@ namespace Bank_Assistant
         public AddForm()
         {
             InitializeComponent();
+            SaveBtn.Visible = false;
+            updBtn.Visible = false;
         }
 
         /*
@@ -116,12 +118,10 @@ namespace Bank_Assistant
                     {
                         socialGBox.Visible = false;
                         stage++;
+                        SaveBtn.Visible = true;
+                        updBtn.Visible = true;
                     }
                     else MessageBox.Show("Some necessary fields wasn't filled");
-                    break;
-                case 7:
-                    SendInfo();
-                    this.Close();
                     break;
                 default:
                     MessageBox.Show("WTF!?");
@@ -141,7 +141,7 @@ namespace Bank_Assistant
         {
             for (int i=0;i<2;i++)
             {
-                if (args[i].Length<15)
+                if (args[i].Length<15 && args[i].Length>0)
                     return false;
             }
             return CheckNonrequiredInfo(0,args);
@@ -193,7 +193,7 @@ namespace Bank_Assistant
         {
             for (Int32 count = 0;count<=2;count++,massiveCount++)
             {
-                if (args[count].Trim().Length == 0) Info[massiveCount] = "null";
+                if (args[count].Trim().Length == 0) Info[massiveCount] = "";
                 else Info[massiveCount] = args[count].Trim();
             }
             if (mode==1)
@@ -292,6 +292,13 @@ namespace Bank_Assistant
                     massiveCount = 18;
                     stage--;
                     break;
+                case 7:
+                    socialGBox.Visible = true;
+                    stage--;
+                    massiveCount = 21;
+                    SaveBtn.Visible = false;
+                    updBtn.Visible = false;
+                    break;
                 default:
                     MessageBox.Show("WTF!?");
                     break;
@@ -386,6 +393,61 @@ namespace Bank_Assistant
             if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '+' && e.KeyChar != '(' && e.KeyChar != ')'
                 && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Delete)
                 e.Handled = true;
+        }
+
+        private void updBtn_Click(object sender, EventArgs e)
+        {
+            //SendInfo();
+            this.Close();
+
+        }
+
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            SendInfo();
+            this.Close();
+        }
+
+        public void ShowSelectedUser(DataGridViewRow row)
+        {
+            fnameBox.Text = row.Cells[1].Value.ToString();
+            sNameBox.Text = row.Cells[2].Value.ToString();
+            fatNameBox.Text = row.Cells[3].Value.ToString();
+            bdayBox.Text = StringDataFormat(row.Cells[4].Value.ToString());
+            bdayBox.ForeColor = Color.Black;
+            if (row.Cells[5].Value.ToString() == "F")
+                isFemaleRBtn.Checked = true;
+            bplaceBox.Text = row.Cells[6].Value.ToString();
+            serieTBox.Text = row.Cells[7].Value.ToString();
+            numberTBox.Text = row.Cells[8].Value.ToString();
+            idTBox.Text = row.Cells[9].Value.ToString();
+            authorityTBox.Text = row.Cells[10].Value.ToString();
+            issueTBox.Text = StringDataFormat(row.Cells[11].Value.ToString());
+            issueTBox.ForeColor = Color.Black;
+            curTownComBox.Text = row.Cells[12].Value.ToString();
+            curAddrTBox.Text = row.Cells[13].Value.ToString();
+            offTownComBox.Text = row.Cells[14].Value.ToString();
+            offAddrTBox.Text = row.Cells[15].Value.ToString();
+            hPhoneTBox.Text = row.Cells[16].Value.ToString();
+            mPhoneTBox.Text = row.Cells[17].Value.ToString();
+            mailTBox.Text = row.Cells[18].Value.ToString();
+            wplaceTBox.Text = row.Cells[19].Value.ToString();
+            posTBox.Text = row.Cells[20].Value.ToString();
+            salaryTBox.Text = row.Cells[21].Value.ToString();
+            familyComBox.SelectedText = row.Cells[22].Value.ToString();
+            citizenComBox.SelectedText = row.Cells[23].Value.ToString();
+            invalidComBox.SelectedText = row.Cells[24].Value.ToString();
+            if (row.Cells[25].Value.Equals(true)) isOldmanCBox.Checked = true;
+            if (row.Cells[26].Value.Equals(true)) isArmyCBox.Checked = true;
+        }
+
+        private String StringDataFormat(String sqlDate)
+        {
+            String result = null;
+            result = sqlDate.Substring(6, 4)+"-";
+            result += sqlDate.Substring(3, 2)+"-";
+            result += sqlDate.Substring(0, 2);
+            return result;
         }
         
     }

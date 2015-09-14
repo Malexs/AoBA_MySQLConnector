@@ -119,7 +119,7 @@
             this.Controls.Add(this.GetInfoBtn);
             this.Controls.Add(this.AddInfoBtn);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Bank Assistant";
             ((System.ComponentModel.ISupportInitialize)(this.InfoDataGrid)).EndInit();
             this.ResumeLayout(false);
 
