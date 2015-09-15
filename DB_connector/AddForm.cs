@@ -17,12 +17,13 @@ namespace Bank_Assistant
         Int32 stage = 0;
         Int32 massiveCount = 0;
         String[] Info = new String[26];
+        String[] prevInfo = new String[26];
+        String id = "";
 
         public AddForm()
         {
             InitializeComponent();
-            SaveBtn.Visible = false;
-            updBtn.Visible = false;
+            updBtn.Enabled = false;
         }
 
         /*
@@ -204,24 +205,6 @@ namespace Bank_Assistant
         }
 
         /*
-         * Sending the whole information to the database
-         */
-        private void SendInfo()
-        {
-            using (MySQLConnector msc = new MySQLConnector())
-            {
-                try
-                {
-                    msc.AddInformation(Info);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
-        }
-
-        /*
          * Hide date tips if entered
          */
         private void dateBox_Enter(object sender, EventArgs e)
@@ -315,17 +298,18 @@ namespace Bank_Assistant
 
         private void AddForm_Shown(object sender, EventArgs e)
         {
-            using (MySQLConnector con = new MySQLConnector())
+            //using (MySQLConnector con = new MySQLConnector())
+            MySQLConnector msc = MySQLConnector.GetInstance();
             {
-                curTownComBox.DataSource = con.SelectInformation(0);
+                curTownComBox.DataSource = msc.SelectInformation(0);
                 curTownComBox.DisplayMember = "town_Name";
-                offTownComBox.DataSource = con.SelectInformation(0);
+                offTownComBox.DataSource = msc.SelectInformation(0);
                 offTownComBox.DisplayMember = "town_Name";
-                familyComBox.DataSource = con.SelectInformation(1);
+                familyComBox.DataSource = msc.SelectInformation(1);
                 familyComBox.DisplayMember = "condition";
-                citizenComBox.DataSource = con.SelectInformation(3);
+                citizenComBox.DataSource = msc.SelectInformation(3);
                 citizenComBox.DisplayMember = "countries";
-                invalidComBox.DataSource = con.SelectInformation(2);
+                invalidComBox.DataSource = msc.SelectInformation(2);
                 invalidComBox.DisplayMember = "invalid_cond";                
             }
             fnameBox.Focus();
@@ -397,48 +381,87 @@ namespace Bank_Assistant
 
         private void updBtn_Click(object sender, EventArgs e)
         {
-            //SendInfo();
+            //using (MySQLConnector msc = new MySQLConnector())
+            MySQLConnector msc = MySQLConnector.GetInstance();
+            {
+                try
+                {
+                    //CheckDifferences();
+                    msc.UpdateInfo(id,CheckDifferences(),Info);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
             this.Close();
-
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            SendInfo();
+            //using (MySQLConnector msc = new MySQLConnector())
+            MySQLConnector msc = MySQLConnector.GetInstance();
+            {
+                try
+                {
+                    msc.AddInformation(Info);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
             this.Close();
         }
 
         public void ShowSelectedUser(DataGridViewRow row)
         {
-            fnameBox.Text = row.Cells[1].Value.ToString();
-            sNameBox.Text = row.Cells[2].Value.ToString();
-            fatNameBox.Text = row.Cells[3].Value.ToString();
-            bdayBox.Text = StringDataFormat(row.Cells[4].Value.ToString());
+            id = row.Cells[0].Value.ToString();
+            for (int i = 1; i < 25;i++ )
+            {
+                if (i==4 || i==11)
+                {
+                    prevInfo[i - 1] = StringDataFormat(row.Cells[i].Value.ToString());
+                }
+                else
+                prevInfo[i-1] = row.Cells[i].Value.ToString();
+            }
+            if (row.Cells[25].Value.Equals(true)) prevInfo[24] = "1";//isOldmanCBox.Checked = true;
+            if (row.Cells[26].Value.Equals(true)) prevInfo[25] = "1";//isArmyCBox.Checked = true;
+
+
+            fnameBox.Text = prevInfo[0];
+            sNameBox.Text = prevInfo[1];
+            fatNameBox.Text = prevInfo[2];
+            bdayBox.Text = prevInfo[3];
             bdayBox.ForeColor = Color.Black;
-            if (row.Cells[5].Value.ToString() == "F")
+            if (prevInfo[4] == "F")
                 isFemaleRBtn.Checked = true;
-            bplaceBox.Text = row.Cells[6].Value.ToString();
-            serieTBox.Text = row.Cells[7].Value.ToString();
-            numberTBox.Text = row.Cells[8].Value.ToString();
-            idTBox.Text = row.Cells[9].Value.ToString();
-            authorityTBox.Text = row.Cells[10].Value.ToString();
-            issueTBox.Text = StringDataFormat(row.Cells[11].Value.ToString());
+            bplaceBox.Text = prevInfo[5];
+            serieTBox.Text = prevInfo[6];
+            numberTBox.Text = prevInfo[7];
+            idTBox.Text = prevInfo[8];
+            authorityTBox.Text = prevInfo[9];
+            issueTBox.Text = prevInfo[10];
             issueTBox.ForeColor = Color.Black;
-            curTownComBox.Text = row.Cells[12].Value.ToString();
-            curAddrTBox.Text = row.Cells[13].Value.ToString();
-            offTownComBox.Text = row.Cells[14].Value.ToString();
-            offAddrTBox.Text = row.Cells[15].Value.ToString();
-            hPhoneTBox.Text = row.Cells[16].Value.ToString();
-            mPhoneTBox.Text = row.Cells[17].Value.ToString();
-            mailTBox.Text = row.Cells[18].Value.ToString();
-            wplaceTBox.Text = row.Cells[19].Value.ToString();
-            posTBox.Text = row.Cells[20].Value.ToString();
-            salaryTBox.Text = row.Cells[21].Value.ToString();
-            familyComBox.SelectedText = row.Cells[22].Value.ToString();
-            citizenComBox.SelectedText = row.Cells[23].Value.ToString();
-            invalidComBox.SelectedText = row.Cells[24].Value.ToString();
-            if (row.Cells[25].Value.Equals(true)) isOldmanCBox.Checked = true;
-            if (row.Cells[26].Value.Equals(true)) isArmyCBox.Checked = true;
+            curTownComBox.Text = prevInfo[11];
+            curAddrTBox.Text = prevInfo[12];
+            offTownComBox.Text = prevInfo[13];
+            offAddrTBox.Text = prevInfo[14];
+            hPhoneTBox.Text = prevInfo[15];
+            mPhoneTBox.Text = prevInfo[16];
+            mailTBox.Text = prevInfo[17];
+            wplaceTBox.Text = prevInfo[18];
+            posTBox.Text = prevInfo[19];
+            salaryTBox.Text = prevInfo[20];
+            familyComBox.SelectedText = prevInfo[21];
+            citizenComBox.SelectedText = prevInfo[22];
+            invalidComBox.SelectedText = prevInfo[23];
+            if (prevInfo[24]=="1") isOldmanCBox.Checked = true;
+            if (prevInfo[25]=="1") isArmyCBox.Checked = true;
+
+            SaveBtn.Enabled = false;
+            updBtn.Enabled = true;
         }
 
         private String StringDataFormat(String sqlDate)
@@ -450,5 +473,18 @@ namespace Bank_Assistant
             return result;
         }
         
+        private List<Int32> CheckDifferences()
+        {
+            List<Int32> result = new List<Int32>();
+            if (Info.Equals(prevInfo))
+                return null;
+            else
+            {
+                for (Int32 i = 0; i < Info.Length; i++)
+                    if (!Info[i].Equals(prevInfo[i]))
+                        result.Add(i);
+                return result;
+            }
+        }
     }
 }

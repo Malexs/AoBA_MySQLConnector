@@ -15,10 +15,17 @@ namespace Bank_Assistant
     class MySQLConnector:IDisposable
     {
         MySqlCommand myCommand;
+        static MySQLConnector instance = null;
 
         //Connection String
         static String connString = @"server=127.0.0.1;userid=root;password=admin;database=adb_1";
 
+
+        public static MySQLConnector GetInstance()
+        {
+            if (instance == null) instance = new MySQLConnector();
+            return instance;
+        }
 
         /*args: the whole user information  */
         public void AddInformation(params String[] args)
@@ -66,24 +73,20 @@ namespace Bank_Assistant
             return result;
         }
 
-        public String UpdateInfo()
+        public String UpdateInfo(String ID,List<Int32> diffs,params String[] args)
         {
-            String updater = @"UPDATE user_info SET user_fname='Alexander' WHERE user_info.user_id = 1;";
             using (MySqlConnection myCon = new MySqlConnection(connString))
             {
-                try
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (UpdatingCommand updCmd = new UpdatingCommand(myCommand))
                 {
-                    myCommand = new MySqlCommand(updater, myCon);
-                    myCommand.Connection.Open();
-                    myCommand.ExecuteReader();
-                    myCommand.Connection.Close();
-                    return "Okay";
+                    updCmd.Execute(ID,diffs,args);
                 }
-                catch (Exception ex)
-                {
-                    return ex.ToString();
-                }
+                myCommand.Connection.Close();
             }
+            return null;
         }
 
         public String DeleteInfo(String idString)

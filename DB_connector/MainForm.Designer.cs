@@ -67,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.InfoDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.InfoDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.InfoDataGrid.Location = new System.Drawing.Point(9, 7);
             this.InfoDataGrid.Name = "InfoDataGrid";
             this.InfoDataGrid.RowHeadersVisible = false;
@@ -81,7 +81,7 @@
             this.UpdBtn.Name = "UpdBtn";
             this.UpdBtn.Size = new System.Drawing.Size(64, 26);
             this.UpdBtn.TabIndex = 4;
-            this.UpdBtn.Text = "update";
+            this.UpdBtn.Text = "Update";
             this.UpdBtn.UseVisualStyleBackColor = true;
             this.UpdBtn.Click += new System.EventHandler(this.UpdBtn_Click);
             // 

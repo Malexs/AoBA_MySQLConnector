@@ -26,14 +26,15 @@ namespace Bank_Assistant
 
         private void ShowInfoBtn_Click(object sender, EventArgs e)
         {
-            using (MySQLConnector msc = new MySQLConnector())
+            //using (MySQLConnector msc = new MySQLConnector())
+            MySQLConnector msc = MySQLConnector.GetInstance();
             {
                 try
                 {
                     InfoDataGrid.DataSource = msc.SelectInformation();
                     InfoDataGrid.Columns[0].Visible = false;
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
                     MessageBox.Show("Empty base");
                 }
@@ -46,13 +47,10 @@ namespace Bank_Assistant
             if (row!=null)
             {
                 AddForm af = new AddForm();
-                af.ShowSelectedUser(row);
                 af.Show();
+                af.Text = "Update";
+                af.ShowSelectedUser(row);
             }
-            //using (MySQLConnector msc = new MySQLConnector())
-            //{
-            //    MessageBox.Show(msc.UpdateInfo());
-            //}
         }
 
         private void DelBtn_Click(object sender, EventArgs e)
@@ -60,7 +58,7 @@ namespace Bank_Assistant
             Int32 i = InfoDataGrid.CurrentRow.Index;
             String selectedString = InfoDataGrid[0, i].Value.ToString();    //get selected user ID
             Console.WriteLine(selectedString);
-            using (MySQLConnector msc = new MySQLConnector())
+            MySQLConnector msc = MySQLConnector.GetInstance();
             {
                 MessageBox.Show(msc.DeleteInfo(selectedString));
             }

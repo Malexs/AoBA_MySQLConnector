@@ -748,6 +748,7 @@
             this.updBtn.TabIndex = 102;
             this.updBtn.Text = "Update";
             this.updBtn.UseVisualStyleBackColor = true;
+            this.updBtn.Visible = false;
             this.updBtn.Click += new System.EventHandler(this.updBtn_Click);
             // 
             // SaveBtn
@@ -758,6 +759,7 @@
             this.SaveBtn.TabIndex = 103;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Visible = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // AddForm
