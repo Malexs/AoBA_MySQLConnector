@@ -387,7 +387,7 @@ namespace Bank_Assistant
                 try
                 {
                     //CheckDifferences();
-                    msc.UpdateInfo(id,CheckDifferences(),Info);
+                    msc.UpdateInfo(id, CheckDifferences(), Info);
                 }
                 catch (Exception ex)
                 {
@@ -404,14 +404,22 @@ namespace Bank_Assistant
             {
                 try
                 {
-                    msc.AddInformation(Info);
+                    if (msc.IfExists(Info[0], Info[1], Info[2])==false && msc.IfExistsPassport(Info[6],Info[7])==false)
+                    {
+
+                        msc.AddInformation(Info);
+                        this.Close();
+                        //msc.UpdateInfo(id, CheckDifferences(), Info);
+                    }
+                    else MessageBox.Show("Already Exists");
+                    //msc.AddInformation(Info);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
             }
-            this.Close();
+            //this.Close();
         }
 
         public void ShowSelectedUser(DataGridViewRow row)

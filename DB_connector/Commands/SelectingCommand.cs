@@ -115,15 +115,16 @@ namespace Bank_Assistant.Commands
             if (args[0].Length > 0) selecting += "user_info.First_name='" + args[0] + "'";
             if (args[1].Length > 0)
             {
-                if (args[0].Length > 0) selecting += ",user_info.Second_name='" + args[1] + "'";
+                if (args[0].Length > 0) selecting += "and user_info.Second_name='" + args[1] + "'";
                 else selecting += "user_info.Second_name='" + args[1] + "'";
             }
             if (args[2].Length > 0)
             {
-                if (args[0].Length > 0 || args[1].Length > 0) selecting += ",user_info.Fathers_name=" + args[2] + "'";
+                if (args[0].Length > 0 || args[1].Length > 0) selecting += "and user_info.Fathers_name='" + args[2] + "'";
                 else selecting += "user_info.Fathers_name='" + args[2] + "'";
             }
-            selecting += "ORDER BY user_info.Second_name;";
+            selecting += " ORDER BY user_info.Second_name;";
+            Console.WriteLine(selecting);
             DataTable dataTable = null;
 
             dataTable = new DataTable();
@@ -143,6 +144,56 @@ namespace Bank_Assistant.Commands
                 throw ex;
             }
             return dataTable;
+        }
+
+        public Boolean GetFIOCheck(params String[] args)
+        {
+            Boolean result=false;
+            String selecting = @"SELECT * FROM user_info
+                                WHERE First_name='"+args[0]+"' and "+
+                                "Second_name='"+args[1]+"' and "+"Fathers_name='"+args[2]+"';";
+            DataTable dataTable = null;
+            dataTable = new DataTable();
+
+            try
+            {
+                myCommand.CommandText = selecting;
+                using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                {
+                    result = dataReader.HasRows;
+                    
+                }
+            }
+            catch (MySqlException ex)
+            {
+                //throw ex;
+            }
+            return result;
+        }
+
+        public Boolean GetPassportCheck(params String[] args)
+        {
+            Boolean result = false;
+            String selecting = @"SELECT * FROM user_passport_info
+                                WHERE Passport_serie='" + args[0] + "' and " +
+                                "Passport_number='" + args[1] + "';";
+            DataTable dataTable = null;
+            dataTable = new DataTable();
+
+            try
+            {
+                myCommand.CommandText = selecting;
+                using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                {
+                    result = dataReader.HasRows;
+
+                }
+            }
+            catch (MySqlException ex)
+            {
+                //throw ex;
+            }
+            return result;
         }
 
         public void Dispose()

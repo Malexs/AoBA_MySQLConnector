@@ -75,7 +75,8 @@ namespace Bank_Assistant
         public void ShowSearch(DataTable table)
         {
             InfoDataGrid.DataSource = table;
-            InfoDataGrid.Columns[0].Visible = false;
+            if (InfoDataGrid.RowCount>0)
+                InfoDataGrid.Columns[0].Visible = false;
         }
     }
 }

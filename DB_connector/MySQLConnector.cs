@@ -112,6 +112,40 @@ namespace Bank_Assistant
             }
         }
 
+        public Boolean IfExists(params String[] args)
+        {
+            Boolean result = false;
+            using (MySqlConnection myCon = new MySqlConnection(connString))
+            {
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
+                {
+                    result = SelCmd.GetFIOCheck(args[0], args[1], args[2]);
+                }
+                myCommand.Connection.Close();
+                return result;
+            }
+        }
+
+        public Boolean IfExistsPassport(params String[] args)
+        {
+            Boolean result = false;
+            using (MySqlConnection myCon = new MySqlConnection(connString))
+            {
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
+                {
+                    result = SelCmd.GetPassportCheck(args[0], args[1]);
+                }
+                myCommand.Connection.Close();
+                return result;
+            }
+        }
+
         public void Dispose()
         {
 
