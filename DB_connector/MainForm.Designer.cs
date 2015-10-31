@@ -3,14 +3,14 @@
     partial class MainForm
     {
         /// <summary>
-        /// Требуется переменная конструктора.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Освободить все используемые ресурсы.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,119 +20,68 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором форм Windows
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Обязательный метод для поддержки конструктора - не изменяйте
-        /// содержимое данного метода при помощи редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddInfoBtn = new System.Windows.Forms.Button();
-            this.GetInfoBtn = new System.Windows.Forms.Button();
-            this.InfoDataGrid = new System.Windows.Forms.DataGridView();
-            this.UpdBtn = new System.Windows.Forms.Button();
-            this.DelBtn = new System.Windows.Forms.Button();
-            this.searchBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.InfoDataGrid)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.depoUpdBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // AddInfoBtn
+            // button1
             // 
-            this.AddInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddInfoBtn.Location = new System.Drawing.Point(9, 310);
-            this.AddInfoBtn.Name = "AddInfoBtn";
-            this.AddInfoBtn.Size = new System.Drawing.Size(88, 30);
-            this.AddInfoBtn.TabIndex = 1;
-            this.AddInfoBtn.Text = "Add new";
-            this.AddInfoBtn.UseVisualStyleBackColor = true;
-            this.AddInfoBtn.Click += new System.EventHandler(this.AddInfoBtn_Click);
+            this.button1.Location = new System.Drawing.Point(12, 292);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Open users";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.openUserBtn_Click);
             // 
-            // GetInfoBtn
+            // button2
             // 
-            this.GetInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.GetInfoBtn.Location = new System.Drawing.Point(103, 312);
-            this.GetInfoBtn.Name = "GetInfoBtn";
-            this.GetInfoBtn.Size = new System.Drawing.Size(78, 27);
-            this.GetInfoBtn.TabIndex = 2;
-            this.GetInfoBtn.Text = "Show all";
-            this.GetInfoBtn.UseVisualStyleBackColor = true;
-            this.GetInfoBtn.Click += new System.EventHandler(this.ShowInfoBtn_Click);
+            this.button2.Location = new System.Drawing.Point(109, 292);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Add deposit";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.addDepositeBtn_Click);
             // 
-            // InfoDataGrid
+            // depoUpdBtn
             // 
-            this.InfoDataGrid.AllowUserToAddRows = false;
-            this.InfoDataGrid.AllowUserToDeleteRows = false;
-            this.InfoDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.InfoDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.InfoDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.InfoDataGrid.Location = new System.Drawing.Point(9, 7);
-            this.InfoDataGrid.Name = "InfoDataGrid";
-            this.InfoDataGrid.RowHeadersVisible = false;
-            this.InfoDataGrid.Size = new System.Drawing.Size(423, 258);
-            this.InfoDataGrid.TabIndex = 3;
-            // 
-            // UpdBtn
-            // 
-            this.UpdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.UpdBtn.Location = new System.Drawing.Point(187, 312);
-            this.UpdBtn.Name = "UpdBtn";
-            this.UpdBtn.Size = new System.Drawing.Size(64, 26);
-            this.UpdBtn.TabIndex = 4;
-            this.UpdBtn.Text = "Update";
-            this.UpdBtn.UseVisualStyleBackColor = true;
-            this.UpdBtn.Click += new System.EventHandler(this.UpdBtn_Click);
-            // 
-            // DelBtn
-            // 
-            this.DelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DelBtn.Location = new System.Drawing.Point(257, 314);
-            this.DelBtn.Name = "DelBtn";
-            this.DelBtn.Size = new System.Drawing.Size(75, 23);
-            this.DelBtn.TabIndex = 5;
-            this.DelBtn.Text = "Delete";
-            this.DelBtn.UseVisualStyleBackColor = true;
-            this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchBtn.Location = new System.Drawing.Point(338, 314);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 23);
-            this.searchBtn.TabIndex = 6;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            this.depoUpdBtn.Location = new System.Drawing.Point(225, 294);
+            this.depoUpdBtn.Name = "depoUpdBtn";
+            this.depoUpdBtn.Size = new System.Drawing.Size(75, 23);
+            this.depoUpdBtn.TabIndex = 2;
+            this.depoUpdBtn.Text = "Change depo";
+            this.depoUpdBtn.UseVisualStyleBackColor = true;
+            this.depoUpdBtn.Click += new System.EventHandler(this.depoUpdBtn_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 353);
-            this.Controls.Add(this.searchBtn);
-            this.Controls.Add(this.DelBtn);
-            this.Controls.Add(this.UpdBtn);
-            this.Controls.Add(this.InfoDataGrid);
-            this.Controls.Add(this.GetInfoBtn);
-            this.Controls.Add(this.AddInfoBtn);
+            this.ClientSize = new System.Drawing.Size(504, 327);
+            this.Controls.Add(this.depoUpdBtn);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
-            this.Text = "Bank Assistant";
-            ((System.ComponentModel.ISupportInitialize)(this.InfoDataGrid)).EndInit();
+            this.Text = "MainForm";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button AddInfoBtn;
-        private System.Windows.Forms.Button GetInfoBtn;
-        private System.Windows.Forms.DataGridView InfoDataGrid;
-        private System.Windows.Forms.Button UpdBtn;
-        private System.Windows.Forms.Button DelBtn;
-        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button depoUpdBtn;
     }
 }
-

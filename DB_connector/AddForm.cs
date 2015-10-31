@@ -19,6 +19,7 @@ namespace Bank_Assistant
         String[] Info = new String[26];
         String[] prevInfo = new String[26];
         String id = "";
+        DateTime dt;
 
         public AddForm()
         {
@@ -53,7 +54,7 @@ namespace Bank_Assistant
                     break;
                 case 1:
                     String sex = "";
-                    if (bdayBox.Text.Length == bdayBox.MaxLength)
+                    if (DateTime.TryParse(bdayBox.Text,out dt))
                     {
                         if (isMaleRBtn.Checked)
                             sex = "M";
@@ -67,18 +68,22 @@ namespace Bank_Assistant
                         }
                         else MessageBox.Show("Some necessary fields wasn't filled");
                     }
-                    else MessageBox.Show("Some necessary fields wasn't filled");
+                    else MessageBox.Show("Please, fill the date correctly.");
                     break;
                 case 2:
-                    if (CheckPassportMasks(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
-                        //CheckInfoCorrection(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
+                    if (DateTime.TryParse(issueTBox.Text, out dt))
                     {
-                        passportGBox.Visible = false;
-                        addrGBox.Visible = true;
-                        curTownComBox.Focus();
-                        stage++;
+                        if (CheckPassportMasks(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
+                        //CheckInfoCorrection(serieTBox.Text, numberTBox.Text, idTBox.Text, authorityTBox.Text, issueTBox.Text))
+                        {
+                            passportGBox.Visible = false;
+                            addrGBox.Visible = true;
+                            curTownComBox.Focus();
+                            stage++;
+                        }
+                        else MessageBox.Show("Some necessary fields wasn't filled");
                     }
-                    else MessageBox.Show("Some necessary fields wasn't filled");
+                    else MessageBox.Show("Please, fill the date correctly.");
                     break;
                 case 3:
                     if (CheckInfoCorrection(curTownComBox.Text,curAddrTBox.Text,offTownComBox.Text,offAddrTBox.Text))
@@ -337,7 +342,7 @@ namespace Bank_Assistant
             if((e.KeyChar<'0' || e.KeyChar>'9') && e.KeyChar!='-'
                 && e.KeyChar!=(char)Keys.Back && e.KeyChar!=(char)Keys.Delete)
             {
-                    e.Handled = true;
+                e.Handled = true;
             }
             else
             {
@@ -345,27 +350,10 @@ namespace Bank_Assistant
                     || obj.Text.Length > 7) && e.KeyChar == '-')
                     e.Handled = true;
                 else 
-                {
-                    if ((obj.Text.Length==4 || obj.Text.Length==7)&&(e.KeyChar>='0' && e.KeyChar<='9'))
+                    if ((obj.Text.Length == 4 || obj.Text.Length == 7) && (e.KeyChar >= '0' && e.KeyChar <= '9'))
                     {
                         e.Handled = true;
                     }
-                    //Monthes: 01-12
-                    if (obj.Text.Length == 5 && e.KeyChar > '1' && e.KeyChar<='9') 
-                        e.Handled = true;
-                    if (obj.Text.Length == 6 && obj.Text[5] == '1' && e.KeyChar > '2' && e.KeyChar <= '9')
-                        e.Handled = true;
-                    //Days: 01-31
-                    if (obj.Text.Length == 8 && e.KeyChar > '3' && e.KeyChar <= '9')
-                        e.Handled = true;
-                    if (obj.Text.Length == 9 && obj.Text[8] > '2' && e.KeyChar > '1' && e.KeyChar <= '9')
-                        e.Handled = true;
-                    //For February days 01-28
-                    else if (obj.Text.Length == 9 &&  obj.Text[5] == '0' && obj.Text[6] == '2' && obj.Text[8] > '2')
-                        e.Handled = true;
-                    else if (obj.Text.Length == 9 && e.KeyChar > '8' && e.KeyChar <= '9' && obj.Text[5] == '0' && obj.Text[6] == '2' && obj.Text[8] == '2')
-                        e.Handled = true;
-                }
             }
         }
 

@@ -13,14 +13,32 @@ namespace Bank_Assistant
     public partial class SearchForm : Form
     {
 
-        MainForm parent = null;
+        UserForm parent = null;
+        Int32 num;
+        public Int32 Number { get { return num; } }
+        Type type;
 
-        public SearchForm()
+        public enum Type
+        {
+            Users,
+            Agreements,
+        };
+
+        public SearchForm(Type _type)
         {
             InitializeComponent();
+            if (_type == Type.Agreements)
+            {
+                fnameLabel.Visible = false;
+                fnameTBox.Visible = false;
+                snameLabel.Text = "Agreement number";
+                fathNameLabel.Visible = false;
+                fatNameTBox.Visible = false;
+            }
+            type = _type;
         }
 
-        public void SaveParent(MainForm parent)
+        public void SaveParent(UserForm parent)
         {
             this.parent = parent;
         }
@@ -34,8 +52,13 @@ namespace Bank_Assistant
         {
             using (MySQLConnector connector = new MySQLConnector())
             {
-                parent.ShowSearch(connector.SelectInformation(fnameTBox.Text.Trim(),
-                    snameTBox.Text.Trim(),fatNameTBox.Text.Trim()));
+                if (type == Type.Users)
+                    parent.ShowSearch(connector.SelectInformation(fnameTBox.Text.Trim(),
+                        snameTBox.Text.Trim(), fatNameTBox.Text.Trim()));
+                else
+                    if (snameTBox.Text.Length>0)
+                        if (!Int32.TryParse(snameTBox.Text, out num))
+                            num = 0;
             }
             this.Close();
         }

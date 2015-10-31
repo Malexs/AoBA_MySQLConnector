@@ -18,7 +18,7 @@ namespace Bank_Assistant
         static MySQLConnector instance = null;
 
         //Connection String
-        static String connString = @"server=127.0.0.1;userid=root;password=admin;database=adb_1";
+        static String connString = @"server=127.0.0.1;userid=root;password=root;database=adb_1";
 
 
         public static MySQLConnector GetInstance()
@@ -144,6 +144,57 @@ namespace Bank_Assistant
                 myCommand.Connection.Close();
                 return result;
             }
+        }
+
+        public DataTable SelectDepoInfo(params Int32[] info)
+        {
+            DataTable result = null;
+            using (MySqlConnection myCon = new MySqlConnection(connString))
+            {
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
+                {
+                    result = SelCmd.GetDepoInfo(info);
+                }
+                myCommand.Connection.Close();
+            }
+            return result;
+        }
+
+        public DataTable SelectLastAgreement()
+        {
+            DataTable result = null;
+            using (MySqlConnection myCon = new MySqlConnection(connString))
+            {
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
+                {
+                    result = SelCmd.GetLastAgreement();
+                }
+                myCommand.Connection.Close();
+            }
+            return result;
+        }
+
+        public DataTable SelectAgreementInfo(Int32 num)
+        {
+            DataTable result = null;
+            using (MySqlConnection myCon = new MySqlConnection(connString))
+            {
+                myCommand = new MySqlCommand();
+                myCommand.Connection = myCon;
+                myCommand.Connection.Open();
+                using (SelectingCommand SelCmd = new SelectingCommand(myCommand))
+                {
+                    result = SelCmd.GetAgreementInfo(num);
+                }
+                myCommand.Connection.Close();
+            }
+            return result;
         }
 
         public void Dispose()

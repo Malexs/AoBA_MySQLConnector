@@ -119,6 +119,7 @@
             // 
             // fatNameBox
             // 
+            this.fatNameBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.fatNameBox.Location = new System.Drawing.Point(100, 98);
             this.fatNameBox.MaxLength = 16;
             this.fatNameBox.Name = "fatNameBox";
@@ -128,6 +129,7 @@
             // 
             // sNameBox
             // 
+            this.sNameBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.sNameBox.Location = new System.Drawing.Point(100, 64);
             this.sNameBox.MaxLength = 32;
             this.sNameBox.Name = "sNameBox";
@@ -137,6 +139,7 @@
             // 
             // fnameBox
             // 
+            this.fnameBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.fnameBox.Location = new System.Drawing.Point(100, 29);
             this.fnameBox.MaxLength = 16;
             this.fnameBox.Name = "fnameBox";
@@ -313,6 +316,7 @@
             // 
             // authorityTBox
             // 
+            this.authorityTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.authorityTBox.Location = new System.Drawing.Point(100, 131);
             this.authorityTBox.MaxLength = 45;
             this.authorityTBox.Name = "authorityTBox";
@@ -331,6 +335,7 @@
             // 
             // idTBox
             // 
+            this.idTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.idTBox.Location = new System.Drawing.Point(100, 98);
             this.idTBox.MaxLength = 14;
             this.idTBox.Name = "idTBox";
@@ -348,6 +353,7 @@
             // 
             // serieTBox
             // 
+            this.serieTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.serieTBox.Location = new System.Drawing.Point(100, 29);
             this.serieTBox.MaxLength = 2;
             this.serieTBox.Name = "serieTBox";
@@ -566,6 +572,7 @@
             // 
             // posTBox
             // 
+            this.posTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.posTBox.Location = new System.Drawing.Point(100, 64);
             this.posTBox.MaxLength = 32;
             this.posTBox.Name = "posTBox";

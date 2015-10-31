@@ -21,3 +21,17 @@ C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.MainFo
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.Properties.Resources.resources
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csproj.GenerateResource.Cache
 C:\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.SearchForm.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.exe.config
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\DB_connector.exe
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\DB_connector.pdb
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.exe
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\DB_connector.pdb
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\bin\Debug\MySql.Data.dll
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csprojResolveAssemblyReference.cache
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.AddForm.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.MainForm.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.Properties.Resources.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.SearchForm.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.csproj.GenerateResource.Cache
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.UserForm.resources
+C:\Alexander\Repositories\AoBA_MySQLConnector\DB_connector\obj\Debug\Bank_Assistant.AddDepoForm.resources

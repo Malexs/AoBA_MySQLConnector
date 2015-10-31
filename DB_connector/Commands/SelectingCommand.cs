@@ -19,19 +19,6 @@ namespace Bank_Assistant.Commands
             this.myCommand = myCom;
         }
 
-        //public DataTable Execute()
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    return null;
-        //}
-
         public DataTable GetReqInfo(Int32 req)
         {
             String selected = "";
@@ -74,12 +61,6 @@ namespace Bank_Assistant.Commands
         {
 
             String selecting = @"SELECT * FROM user_info
-                                INNER JOIN user_birth_info USING (user_id)
-                                INNER JOIN user_passport_info USING (user_id)
-                                INNER JOIN user_addresses USING (user_id)
-                                INNER JOIN user_contacts USING (user_id)
-                                INNER JOIN user_work_info USING (user_id)
-                                INNER JOIN user_social USING (user_id)
                                 ORDER BY user_info.Second_name;";
             DataTable dataTable = null;
 
@@ -105,12 +86,6 @@ namespace Bank_Assistant.Commands
         public DataTable GetReqInfo(params String[] args)
         {
             String selecting = @"SELECT * FROM user_info
-                                INNER JOIN user_birth_info USING (user_id)
-                                INNER JOIN user_passport_info USING (user_id)
-                                INNER JOIN user_addresses USING (user_id)
-                                INNER JOIN user_contacts USING (user_id)
-                                INNER JOIN user_work_info USING (user_id)
-                                INNER JOIN user_social USING (user_id)
                                 WHERE ";
             if (args[0].Length > 0) selecting += "user_info.First_name='" + args[0] + "'";
             if (args[1].Length > 0)
@@ -166,7 +141,7 @@ namespace Bank_Assistant.Commands
             }
             catch (MySqlException ex)
             {
-                //throw ex;
+                throw ex;
             }
             return result;
         }
@@ -174,7 +149,7 @@ namespace Bank_Assistant.Commands
         public Boolean GetPassportCheck(params String[] args)
         {
             Boolean result = false;
-            String selecting = @"SELECT * FROM user_passport_info
+            String selecting = @"SELECT * FROM user_info
                                 WHERE Passport_serie='" + args[0] + "' and " +
                                 "Passport_number='" + args[1] + "';";
             DataTable dataTable = null;
@@ -191,9 +166,116 @@ namespace Bank_Assistant.Commands
             }
             catch (MySqlException ex)
             {
-                //throw ex;
+                throw ex;
             }
             return result;
+        }
+
+        public DataTable GetDepoInfo(params Int32[] i)
+        {
+            String selecting = "";
+            switch (i.Length)
+            {
+                case 0:
+                    selecting = @"SELECT * FROM dep_type ORDER BY dep_type.Type_id;";
+                    break;
+                case 1:
+                    selecting = @"SELECT Deposit_id, typ.Type_name, Deposit_name, cur.Curr_name, Deposit_minimum,
+                                            Deposit_days,Deposit_percent 
+                                        FROM Deposits as dep
+                                  inner join dep_type as typ
+	                                on dep.Deposit_type = typ.Type_id
+                                  inner join currency as cur
+	                                on dep.Deposit_curr = cur.Curr_id
+	                                    WHERE Deposit_type=" + i[0];
+                    break;
+
+            }
+
+            DataTable dataTable = null;
+
+            dataTable = new DataTable();
+            try
+            {
+                myCommand.CommandText = selecting;
+                using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                {
+                    if (dataReader.HasRows)
+                    {
+                        dataTable.Load(dataReader);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            return dataTable;
+        }
+
+        public DataTable GetLastAgreement()
+        {
+            String selecting = @"Select Max(Agree_id) from Agreement;";
+            DataTable dataTable = null;
+
+            dataTable = new DataTable();
+            try
+            {
+                myCommand.CommandText = selecting;
+                using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                {
+                    if (dataReader.HasRows)
+                    {
+                        dataTable.Load(dataReader);
+                    }
+                    else dataTable = null;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            return dataTable;
+        }
+
+        public DataTable GetAgreementInfo(params Int32[] args)
+        {
+            String selecting = "";
+            switch (args.Length)
+            {
+                case 0:
+                    selecting = @"SELECT * FROM Agreement ORDER BY Agree_id;";
+                    break;
+                case 1:
+                    selecting = @"SELECT Agree_id,Agree_start,Agree_depo_end,Agree_end,Agree_summ,usr.First_name,usr.Second_name,usr.Fathers_name
+                                        FROM Agreement as agr
+                                  inner join user_info as usr
+	                                on agr.Agree_client = usr.user_id
+	                                    WHERE Agree_id=" + args[0];
+                    break;
+
+            }
+
+            DataTable dataTable = null;
+
+            dataTable = new DataTable();
+            try
+            {
+                myCommand.CommandText = selecting;
+                using (MySqlDataReader dataReader = myCommand.ExecuteReader())
+                {
+                    if (dataReader.HasRows)
+                    {
+                        dataTable.Load(dataReader);
+                    }
+                    else dataTable = null;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            return dataTable;
         }
 
         public void Dispose()

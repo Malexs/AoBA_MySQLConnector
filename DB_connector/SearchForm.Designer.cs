@@ -41,7 +41,7 @@
             // fnameLabel
             // 
             this.fnameLabel.AutoSize = true;
-            this.fnameLabel.Location = new System.Drawing.Point(12, 23);
+            this.fnameLabel.Location = new System.Drawing.Point(77, 7);
             this.fnameLabel.Name = "fnameLabel";
             this.fnameLabel.Size = new System.Drawing.Size(55, 13);
             this.fnameLabel.TabIndex = 0;
@@ -49,7 +49,8 @@
             // 
             // fnameTBox
             // 
-            this.fnameTBox.Location = new System.Drawing.Point(15, 48);
+            this.fnameTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.fnameTBox.Location = new System.Drawing.Point(48, 23);
             this.fnameTBox.MaxLength = 16;
             this.fnameTBox.Name = "fnameTBox";
             this.fnameTBox.Size = new System.Drawing.Size(122, 20);
@@ -58,7 +59,7 @@
             // snameLabel
             // 
             this.snameLabel.AutoSize = true;
-            this.snameLabel.Location = new System.Drawing.Point(161, 23);
+            this.snameLabel.Location = new System.Drawing.Point(69, 46);
             this.snameLabel.Name = "snameLabel";
             this.snameLabel.Size = new System.Drawing.Size(73, 13);
             this.snameLabel.TabIndex = 2;
@@ -66,7 +67,8 @@
             // 
             // snameTBox
             // 
-            this.snameTBox.Location = new System.Drawing.Point(164, 48);
+            this.snameTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.snameTBox.Location = new System.Drawing.Point(48, 65);
             this.snameTBox.MaxLength = 32;
             this.snameTBox.Name = "snameTBox";
             this.snameTBox.Size = new System.Drawing.Size(122, 20);
@@ -74,7 +76,8 @@
             // 
             // fatNameTBox
             // 
-            this.fatNameTBox.Location = new System.Drawing.Point(317, 48);
+            this.fatNameTBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.fatNameTBox.Location = new System.Drawing.Point(48, 104);
             this.fatNameTBox.MaxLength = 16;
             this.fatNameTBox.Name = "fatNameTBox";
             this.fatNameTBox.Size = new System.Drawing.Size(122, 20);
@@ -83,7 +86,7 @@
             // fathNameLabel
             // 
             this.fathNameLabel.AutoSize = true;
-            this.fathNameLabel.Location = new System.Drawing.Point(314, 23);
+            this.fathNameLabel.Location = new System.Drawing.Point(69, 88);
             this.fathNameLabel.Name = "fathNameLabel";
             this.fathNameLabel.Size = new System.Drawing.Size(71, 13);
             this.fathNameLabel.TabIndex = 4;
@@ -91,7 +94,7 @@
             // 
             // srchBtn
             // 
-            this.srchBtn.Location = new System.Drawing.Point(62, 111);
+            this.srchBtn.Location = new System.Drawing.Point(67, 130);
             this.srchBtn.Name = "srchBtn";
             this.srchBtn.Size = new System.Drawing.Size(75, 23);
             this.srchBtn.TabIndex = 6;
@@ -101,7 +104,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(317, 111);
+            this.cancelBtn.Location = new System.Drawing.Point(67, 159);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 7;
@@ -113,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 200);
+            this.ClientSize = new System.Drawing.Size(234, 200);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.srchBtn);
             this.Controls.Add(this.fatNameTBox);

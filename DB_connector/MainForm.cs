@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Bank_Assistant
 {
     public partial class MainForm : Form
@@ -18,65 +17,24 @@ namespace Bank_Assistant
             InitializeComponent();
         }
 
-        private void AddInfoBtn_Click(object sender, EventArgs e)
+        private void openUserBtn_Click(object sender, EventArgs e)
         {
-            AddForm af = new AddForm();
-            af.Show();
+            UserForm uf = new UserForm();
+            uf.Show();
         }
 
-        private void ShowInfoBtn_Click(object sender, EventArgs e)
+        private void addDepositeBtn_Click(object sender, EventArgs e)
         {
-            //using (MySQLConnector msc = new MySQLConnector())
-            MySQLConnector msc = MySQLConnector.GetInstance();
-            {
-                try
-                {
-                    InfoDataGrid.DataSource = msc.SelectInformation();
-                    InfoDataGrid.Columns[0].Visible = false;
-                }
-                catch(Exception)
-                {
-                    MessageBox.Show("Empty base");
-                }
-            }
+            AddDepoForm addDepoForm = new AddDepoForm(AddDepoForm.Type.Add);
+            addDepoForm.ShowDialog();
         }
 
-        private void UpdBtn_Click(object sender, EventArgs e)
+        private void depoUpdBtn_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = InfoDataGrid.CurrentRow;
-            if (row!=null)
-            {
-                AddForm af = new AddForm();
-                af.Show();
-                af.Text = "Update";
-                af.ShowSelectedUser(row);
-            }
-        }
-
-        private void DelBtn_Click(object sender, EventArgs e)
-        {
-            Int32 i = InfoDataGrid.CurrentRow.Index;
-            String selectedString = InfoDataGrid[0, i].Value.ToString();    //get selected user ID
-            Console.WriteLine(selectedString);
-            MySQLConnector msc = MySQLConnector.GetInstance();
-            {
-                MessageBox.Show(msc.DeleteInfo(selectedString));
-            }
-            InfoDataGrid.Rows.RemoveAt(i);
-        }
-
-        private void searchBtn_Click(object sender, EventArgs e)
-        {
-            SearchForm searchForm = new SearchForm();
-            searchForm.SaveParent(this);
-            searchForm.Show();
-        }
-
-        public void ShowSearch(DataTable table)
-        {
-            InfoDataGrid.DataSource = table;
-            if (InfoDataGrid.RowCount>0)
-                InfoDataGrid.Columns[0].Visible = false;
+            SearchForm sf = new SearchForm(SearchForm.Type.Agreements);
+            sf.ShowDialog();
+            AddDepoForm adf = new AddDepoForm(AddDepoForm.Type.Update);
+            adf.SetUser(sf.Number);
         }
     }
 }
